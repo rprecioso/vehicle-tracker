@@ -1,0 +1,2909 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TrackPro - Track</title>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="../Content/jasny-bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/jquery-ui.min.css" rel="stylesheet" />
+    <link href="../Content/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="../Content/styles/track/track.css" rel="stylesheet" />
+    <link href="../Content/jquery-ui-timepicker.css" rel="stylesheet" />
+
+
+
+</head>
+<body>
+    <div class="header">
+        <img class="header-logo" src="../Content/images/login/trackpro_logo_white.png" />
+
+        <span class="header-user">
+            <i class="fa fa-book"></i>
+            <a class="header-user-logout" href="http://beta.philgps.com/trackreport" target="_blank"><i class="fa fa-arrow-right"> report</i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="fa fa-user"></i>
+            <label id="user-name">User</label>&nbsp;
+            <a class="header-user-logout" onclick="logout()"><i class="fa fa-sign-out"></i> logout</a>
+        </span>
+    </div>
+
+    <div class="left-side-panel-menu">
+        <br />
+        <br />
+        <br />
+        <a data-slidetoggle="assetList" class="left-side-panel-menu-item"><img src="../Content/images/menu_items/asset_list.png" title="Asset List" /></a>
+        <hr />
+        <a data-slidetoggle="filters" class="left-side-panel-menu-item"><img src="../Content/images/menu_items/filter.png" title="Filters" /></a>
+        <hr />
+        <a data-slidetoggle="historyData" class="left-side-panel-menu-item"><img src="../Content/images/menu_items/route_history.png" title="History" /></a>
+        <hr />
+        <!--<a data-slidetoggle="assetSettings" class="left-side-panel-menu-item"><img src="../Content/images/menu_items/asset_settings.png" title="Asset Settings" /></a>
+        <hr />-->
+        <a data-slidetoggle="userSettings" class="left-side-panel-menu-item"><img src="../Content/images/menu_items/app_settings.png" title="User Settings" /></a>
+
+    </div>
+
+    <div class="right-side-panel-menu">
+        <br />
+        <br />
+        <br />
+        <a data-slidetoggle="assetDetails" class="right-side-panel-menu-item"><img src="../Content/images/function_items/info_bar.png" title="Asset Details" /></a>
+        <hr />
+        <a data-slidetoggle="nearestAsset" class="right-side-panel-menu-item"><img src="../Content/images/function_items/nearest_asset.png" title="Nearest Asset" /></a>
+        <hr />
+        <a data-slidetoggle="territorialZoning" class="right-side-panel-menu-item"><img src="../Content/images/function_items/territorial_zoning.png" title="Zoning" /></a>
+        <hr />
+        <a data-slidetoggle="landmarks" class="right-side-panel-menu-item"><img src="../Content/images/function_items/manage_landmarks.png" title="Landmarks" /></a>
+        <hr />
+        <a data-slidetoggle="measureRoute" class="right-side-panel-menu-item"><img src="../Content/images/function_items/ruler.png" title="Measure Route" /></a>
+        <hr />
+        <a data-slidetoggle="traceAsset" class="right-side-panel-menu-item"><i class="fa fa-road" style="color:black;font-size:18px;" title="Asset Tracer"></i></a>
+    </div>
+
+    <div class="container-fluid">
+        <div class="container-map">
+            <div id="map-tools">
+
+                <div id="drawing-tools">
+                    <div>
+                        <table class="table table-condensed">
+                            <tr>
+                                <td></td>
+                                <td><input type="checkbox" id="cbx_overlay_zone" style="vertical-align:sub" />&nbsp;&nbsp;Zone</td>
+                                <td></td>
+                                <td><input type="checkbox" id="cbx_overlay_landmark" style="vertical-align:sub" />&nbsp;&nbsp;Landmark&nbsp;&nbsp;</td>
+                                <td></td>
+                                <td><input type="checkbox" id="cbx_overlay_assets" style="vertical-align:sub" />&nbsp;&nbsp;Asset</td>
+                                <td></td>
+                                <td><input type="checkbox" id="cbx_overlay_track" style="vertical-align:sub" />&nbsp;&nbsp;Trace</td>
+                                <td></td>
+                                <!--<td>Traffic</td>
+                                <td><input type="checkbox" id="cbx_overlay_traffic" /></td>-->
+                                <td><input type="checkbox" id="cbx_overlay_interval" style="vertical-align:sub" />&nbsp;&nbsp;Refresh</td>
+                                <td></td>
+                            </tr>
+
+                        </table>
+                    </div>
+
+                    <div data-bind="with: satvm.SelectedPointOfInterest">
+                        <table class="table table-condensed">
+                            <tr>
+                                <td>Change Type</td>
+                                <td>
+                                    <select data-bind="options: satvm.PointOfInterestTypeList,optionsCaption:'Choose a type...',optionsText:'name',optionsValue:'pointOfInterestTypeId', value: satvm.SelectedPointOfInterestTypeEdit"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" data-bind="value: name" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="overlay-editor-button">
+                                        <a class="btn btn-xs btn-default" onclick="updatePointOfInterest()">Save</a>
+                                    </div>
+                                    <div class="overlay-editor-button">
+                                        <a class="btn btn-xs btn-default" onclick="clearOverlayAll(); handMode(); hideMapTools();">Cancel</a>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div data-bind="with: satvm.SelectedZone">
+                        <table class="table table-condensed">
+                            <tr data-bind="radiusSliderVisibility: zoneTypeId">
+                                <td>
+                                    Radius
+                                </td>
+                                <td>
+                                    <div>
+                                        <div class="zone-circle-slider"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr data-bind="radiusSliderVisibility: zoneTypeId">
+                                <td></td>
+                                <td class="radius-label"></td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td><input type="text" data-bind="value: name" /></td>
+                            </tr>
+                            <tr>
+                                <td>Go Zone</td>
+                                <td><input type="checkbox" class="checkbox-inline" data-bind="checked: allowedZone, click: satvm.changeZoneColor" /></td>
+                            </tr>
+                            <tr>
+                                <td>Enabled</td>
+                                <td><input type="checkbox" class="checkbox-inline" data-bind="checked: enabled" /></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="overlay-editor-button">
+                                        <a class="btn btn-xs btn-default" onclick="updateZone()">Save</a>
+                                    </div>
+                                    <div class="overlay-editor-button">
+                                        <a class="btn btn-xs btn-default" onclick="clearOverlayAll(); handMode(); hideMapTools(); satvm.NewZone(new zoneModel);">Cancel</a>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="map-canvas"></div>
+        </div>
+    </div>
+
+    <div class="menu-item-container">
+        <div class="menu-item-content">
+            <!--assetList-->
+            <div class="left-side-panel-menu-item-container" id="assetList">
+                <div class="side-panel-menu-item-header">
+                    <label class="side-panel-header-content">Assets</label>
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div data-bind="foreach: {data: satvm.ObjectList, as: 'customers'}">
+                        <div class="container-panel">
+                            <div class="group-panel">
+                                <label data-bind="text: customerName"></label>
+                            </div>
+                            <div class="object-panel">
+                                <table class="table table-hover table-condensed">
+                                    <tbody data-bind="foreach: objectList">
+                                        <tr class="object-item" data-bind="click: $root.ObjectSelect">
+                                            <td style="width: 10%;"><i class="fa fa-truck"></i></td>
+                                            <td style="width: 70%;" data-bind="text: objectName"></td>
+                                            <td style="width: 20%;"><i class="gps-loader-icon status-icon fa fa-circle" data-bind="attr:{'data-status': objectId}"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--filters-->
+            <div class="left-side-panel-menu-item-container" id="filters">
+                <div class="side-panel-menu-item-header">
+                    <label class="side-panel-header-content">Filters</label>
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="group-panel">
+                            <!--<label data-bind="text:SelectedFilter"></label>-->
+                            <select id="status-filter-dropdown" data-bind="options: StatusFilters,value: satvm.SelectedFilter, optionsCaption:'Choose...' ,event: { change: satvm.FilterSelect }"></select>
+                        </div>
+                        <div class="object-panel">
+                            <table class="table table-hover table-condensed" id="filter-table" data-bind="visible: satvm.FilteredObjects().length > 0">
+                                <thead>
+                                    <tr>
+                                        <td colspan="5" align="right"><a class="btn btn-xs btn-default" data-bind="click: satvm.FilterExport">Export</a></td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: satvm.FilteredObjects">
+                                    <tr class="object-item" data-bind="click: $root.ObjectSelect">
+                                        <td data-bind="text:$index()+1"></td>
+                                        <td><i class="fa fa-truck"></i></td>
+                                        <td data-bind="text: objectName"></td>
+                                        <td data-bind="text: gpsTime"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--historyData-->
+            <div class="left-side-panel-menu-item-container" id="historyData">
+                <div class="side-panel-menu-item-header">
+                    <label class="side-panel-header-content">History</label>
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="group-panel">
+                            <table>
+                                <tr>
+                                    <td><input type="text" class="datetimepicker" id="sdt" style="color:black!important" /></td>
+                                    <td><input type="text" class="datetimepicker-mid" disabled="disabled" value="-" /></td>
+                                    <td><input type="text" class="datetimepicker" id="edt" style="color:black!important" /></td>
+                     
+                                    <td>
+                                    
+                                            <a class="btn btn-xs btn-default datetimepicker-btn" data-bind="click: SelectHistory">Query</a>
+                                
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                            <!--<div class="btn-group btn-xs">
+                                <a class="btn btn-default btn-xs"><i class="fa fa-play"></i>&nbsp;Play</a>
+                                <a class="btn btn-default btn-xs"><i class="fa fa-pause"></i>&nbsp;Pause</a>
+                                <a class="btn btn-default btn-xs"><i class="fa fa-stop"></i>&nbsp;Stop</a>
+                            </div>-->
+                        </div>
+                        <!--ObjectGPSInfoHistory-->
+                        <div class="object-panel">
+                            <div id="history-loading-icon" style="display:none;text-align:center"><i class="fa fa-refresh fa-spin"></i>&nbsp; Loading</div>
+                            <table class="table table-hover table-condensed" id="history-table" data-bind="visible: satvm.ObjectGPSInfoHistory().length > 0">
+                                <thead>
+                                    <tr>
+                                        <td><a class="btn btn-xs btn-default" data-bind="click: PlayHistory">Play</a></td>
+                                        <td><a class="btn btn-xs btn-default" data-bind="click: ClearHistory">Clear</a></td>
+                                        <td></td>
+                                        <td></td>
+                                 
+                                        <td colspan="4" align="right">
+                                            <a class="btn btn-xs btn-default" data-bind="click: ExportHistory">Export</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>#</td>
+
+                                        <td>Time</td>
+                                        <td>Location</td>
+                                        <td>Speed</td>
+                                        <td>Status</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: satvm.ObjectGPSInfoHistory">
+                                    <tr class="object-item" data-bind="click: $root.HistorySelect">
+                                        <td data-bind="text:$index()+1"></td>
+                                        <td data-bind="text: gpsTime"></td>
+                                        <td data-bind="text: latitude() + ', ' + longitude()"></td>
+                                        <td style="text-align:right" data-bind="text: speed() + ' kph'"></td>
+                                        <td data-bind="statusDescription: $data"></td>
+                                        <td><i data-bind="statusIcon: $data" class="fa fa-circle"></i></td>
+                                    </tr>
+
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--assetSettings-->
+            <div class="left-side-panel-menu-item-container" id="assetSettings">
+                <div class="side-panel-menu-item-header">
+                    <label class="side-panel-header-content">Assets Settings</label>
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="group-panel"></div>
+                        <table class="table table-condensed table-hover" data-bind="with: satvm.SelectedObjectSettings()">
+                            <tr>
+                                <td><i class="fa fa-barcode"></i></td>
+                                <td>VID</td>
+                                <td data-bind="text: objectId"></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-life-buoy"></i></td>
+                                <td>Asset Name</td>
+                                <td><input data-bind="value: objectName" /></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-mobile-phone"></i></td>
+                                <td>SIM</td>
+                                <td><input data-bind="value: sim" /></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-dashboard"></i></td>
+                                <td>Fuel Ratio</td>
+                                <td><input data-bind="value: fuelRatio" /></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-automobile"></i></td>
+                                <td>Fuel Type</td>
+                                <td>
+                                    <select style="width: 126px; height: 23.15px" data-bind="options: satvm.FuelTypeOptions, optionsText: 'fuelTypeName', optionsValue: 'fuelTypeId',value: fuelType"></select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td align="right"><a href="#" class="btn btn-xs btn-default" onclick="updateObjectSettings()"><i class="fa fa-save"></i><span>&nbsp;&nbsp;SAVE</span></a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--userSettings-->
+            <div class="left-side-panel-menu-item-container" id="userSettings">
+                <div class="side-panel-menu-item-header">
+                    <label class="side-panel-header-content">User Settings</label>
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="group-panel"></div>
+                        <table class="table table-condensed table-hover" data-bind="with: satvm.AccountSettings()">
+                            <tr>
+                                <td><i class="fa fa-barcode"></i></td>
+                                <td>Current Password</td>
+                                <td><input type="password" data-bind="value: currentPassword" /></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-life-buoy"></i></td>
+                                <td>New Password</td>
+                                <td><input type="password" data-bind="value: newPassword" /></td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-mobile-phone"></i></td>
+                                <td>Confirm Password</td>
+                                <td><input type="password" data-bind="value: confirmPassword" /></td>
+                            </tr>
+
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td align="right"><a href="#" class="btn btn-xs btn-default" onclick="updateUserSettings()"><i class="fa fa-save"></i>&nbsp;&nbsp;Save</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-menu-item-container">
+        <div class="right-menu-item-content">
+
+            <!--Info Bar-->
+            <div class="right-side-panel-menu-item-container" id="assetDetails">
+                <div class="side-panel-menu-item-header">
+                    <img src="../Content/images/function_items/info_bar.png" class="spro-panel-icon" />&nbsp;Asset Details
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="object-details-content">
+                            <ul>
+                                <li><a href="#gpsDetails"><img src="../Content/images/function_items/asset_info.png" title="Asset Information" /></a></li>
+                                <li><a href="#weatherInfo"><img src="../Content/images/function_items/marine_data.png" title="Weather Information" /></a></li>
+                                <li><a href="#assetPhoto"><i style="color: black; font-size: 23px;" class="fa fa-camera-retro"></i></a></li>
+                                <!--<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>-->
+                                <li style="float:right;"><a href="#assetSettings"><i style="color: black; font-size: 23px;" class="fa fa-gears"></i></a></li>
+                            </ul>
+
+
+                            <div id="gpsDetails" class="object-details-content-panel" data-bind="with: satvm.SelectedObject()">
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_name.png" class="weather-data-icon" /></td>
+                                        <!--<td>Name</td>-->
+                                        <td data-bind="text: objectName"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_id.png" class="weather-data-icon" /></td>
+                                        <!--<td>VID</td>-->
+                                        <td data-bind="text: objectId"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_date_time.png" class="weather-data-icon" /></td>
+                                        <!--<td>Date & Time</td>-->
+                                        <td data-bind="text: gpsTime"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_speed.png" class="weather-data-icon" /></td>
+                                        <!--<td>Speed</td>-->
+                                        <td data-bind="text:speed + ' kph'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_direction.png" class="weather-data-icon" /></td>
+                                        <!--<td>Course</td>-->
+                                        <td data-bind="text:course + ' ° ( ' + satvm.CourseName() + ' )'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_coordinates.png" class="weather-data-icon" /></td>
+                                        <!--<td>Coordinates</td>-->
+                                        <td data-bind="text: latitude + ', ' + longitude"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_address.png" class="weather-data-icon" /></td>
+                                        <!--<td>Location</td>-->
+                                        <td data-bind="text: location"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/asset_fuel.png" class="weather-data-icon" /></td>
+                                        <!--<td>Location</td>-->
+                                        <td data-bind="text: fuel + ' Liter/s'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/temp 1.png" class="weather-data-icon" /></td>
+                                        <!--<td>Location</td>-->
+                                        <td data-bind="text: temperature1 + ' °C'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images//asset_info/temp 2.png" class="weather-data-icon" /></td>
+                                        <!--<td>Location</td>-->
+                                        <td data-bind="text: temperature2 + ' °C'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/odometer1.png" class="weather-data-icon" /></td>
+                                        <!--<td>Location</td>-->
+                                        <td data-bind="text: odometer + ' km'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/asset_info/status.png" class="weather-data-icon" /></td>
+                                        <!--<td>Name</td>-->
+                                        <td data-bind="text: status"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="weatherInfo" class="object-details-content-panel" data-bind="with: satvm.MarineData()">
+                                <table class="table table-condensed table-hover">
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/cloud_cover.png" class="weather-data-icon" /></td>
+                                        <td>Cloud Cover</td>
+                                        <td data-bind="text: cloudCover + ' %'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/ground_temperature.png" class="weather-data-icon" /></td>
+                                        <td>Temperature</td>
+                                        <td data-bind="text: temperatureGround + ' °c'"></td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td><img src="../Content/images/marine_data/sea_temperature.png" class="weather-data-icon" /></td>
+                                        <td>Sea Temperature</td>
+                                        <td data-bind="text: temperatureWater + ' °c'"></td>
+                                    </tr>-->
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/air_pressure.png" class="weather-data-icon" /></td>
+                                        <td>Pressure</td>
+                                        <td data-bind="text: pressure + ' bar'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/humidity.png" class="weather-data-icon" /></td>
+                                        <td>Humidity</td>
+                                        <td data-bind="text: humidity +' %'"></td>
+                                    </tr>
+                                    <!--<tr>
+                                        <td><img src="../Content/images/marine_data/wave_height.png" class="weather-data-icon" /></td>
+                                        <td>Wave Height</td>
+                                        <td data-bind="text: wave + ' m'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/wave_period.png" class="weather-data-icon" /></td>
+                                        <td>Wave Period</td>
+                                        <td data-bind="text: wavePeriod + ' s'"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/wind_gust.png" class="weather-data-icon" /></td>
+                                        <td>Wind Speed</td>
+                                        <td data-bind="text: wind + ' kph'"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/wind_gust.png" class="weather-data-icon" /></td>
+                                        <td>Wind Direction</td>
+                                        <td data-bind="text: windDirectionDegree + '° ' + windDirection"></td>
+                                    </tr>-->
+
+                                    <tr>
+                                        <td><img src="../Content/images/marine_data/precipitation.png" class="weather-data-icon" /></td>
+                                        <td>Precipitation</td>
+                                        <td data-bind="text: precipitation + ' mm'"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div id="assetPhoto" class="object-details-content-panel" data-bind="with: satvm.SelectedObject()">
+                                <div class="asset-photo-container">
+                                    <img class="asset-photo" data-bind="attr: {'src': photoUrl}" alt="Photo Not Available" />
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+                            <div id="assetSettings">
+                                <table class="table table-condensed table-hover" data-bind="with: satvm.SelectedObjectSettings()">
+                                    <tr>
+                                        <td><i class="fa fa-barcode"></i></td>
+                                        <td>VID</td>
+                                        <td data-bind="text: objectId"></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-tag"></i></td>
+                                        <td>Asset Name</td>
+                                        <td><input data-bind="value: objectName" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-mobile-phone"></i></td>
+                                        <td>SIM</td>
+                                        <td><input data-bind="value: sim" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-dashboard"></i></td>
+                                        <td>Fuel Ratio</td>
+                                        <td><input data-bind="value: fuelRatio" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><i class="fa fa-automobile"></i></td>
+                                        <td>Fuel Type</td>
+                                        <td>
+                                            <select style="width: 126px; height: 23.15px" data-bind="options: satvm.FuelTypeOptions, optionsText: 'fuelTypeName', optionsValue: 'fuelTypeId',value: fuelType"></select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td align="right"><a href="#" class="btn btn-xs btn-default" onclick="updateObjectSettings()"><i class="fa fa-save"></i><span>&nbsp;&nbsp;Save</span></a></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Nearest Asset-->
+            <div class="right-side-panel-menu-item-container" id="nearestAsset">
+                <div class="side-panel-menu-item-header">
+                    <img src="../Content/images/function_items/nearest_asset.png" class="spro-panel-icon" />&nbsp;Nearest Assets
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="group-panel">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td><a href="#" class="btn btn-xs btn-default nearby-asset-btn">Search</a></td>
+                                    <td><select style="width: 126px; height: 23.15px;color:black;" data-bind="options: satvm.DistanceLimit, optionsText: 'distanceLimitLabel', optionsValue: 'distanceLimitValue',value: satvm.NearbyDistanceLimit"></select></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="right-object-panel">
+                            <table class="table table-condensed table-hover" id="nearest-table" data-bind="visible: satvm.NearbyObjects().length > 0">
+                                <thead>
+                                    <tr>
+                                        <td colspan="5" align="right"><a class="btn btn-xs btn-default" data-bind="click: satvm.NearestExport">Export</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Name</td>
+                                        <td>Distance (m)</td>
+                                        <td>Latitude</td>
+                                        <td>Longitude</td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:satvm.NearbyObjects()">
+                                    <tr data-bind="click: satvm.NearbyPan">
+                                        <td data-bind="text: $index() + 1"></td>
+                                        <td data-bind="text: objectName"></td>
+                                        <td data-bind="text: distance"></td>
+                                        <td data-bind="text: latitude"></td>
+                                        <td data-bind="text: longitude"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+
+                                </tfoot>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!--Zoning-->
+            <div class="right-side-panel-menu-item-container" id="territorialZoning">
+                <div class="side-panel-menu-item-header">
+                    <img src="../Content/images/function_items/territorial_zoning.png" class="spro-panel-icon" />&nbsp;Zoning
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="zone-content">
+                            <ul>
+                                <li id="zone-list" onclick="handMode(); hideOverlay(selectedOverlay);"><a href="#zoneList" onclick="hideOverlay(selectedOverlay);">List</a></li>
+                                <li id="zoneNew-tab"><a href="#zoneNew"><i class="fa fa-plus" title="New"></i>&nbsp;New</a></li>
+                            </ul>
+                            <div id="zoneList">
+                                <table class="table table-condensed table-hover" id="zone-table" data-bind="visible: satvm.ZoneList().length > 0">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="5" align="left"><a class="btn btn-xs btn-default" data-bind="click: satvm.ZoneExport">Export</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Go Zone</td>
+                                            <td>Enabled</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach:ZoneList">
+                                        <tr>
+                                            <td data-bind="text: name(), click: satvm.ZoneLabel" class="object-item"></td>
+                                            <td data-bind="text: allowedZone() ? 'Yes' : 'No'"></td>
+                                            <td data-bind="text: enabled() ? 'Yes' : 'No'"></td>
+                                            <td><a><i class="fa fa-pencil" data-bind="click: satvm.ZoneSelect, attr:{title: 'edit ' + name() + ' zone'}"></i></a></td>
+                                            <td><a><i class="fa fa-trash" data-bind="click: satvm.ZoneDelete, attr:{title: 'delete ' + name() + ' zone'}"></i></a></td>
+                                            <td style="display:none;">
+                                                <table data-bind="foreach: geocoordinateList">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td data-bind="text: latitude() + ', ' + longitude()"></td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div id="zoneNew">
+                                <table class="table table-condensed table-hover" data-bind="with: NewZone">
+                                    <thead>
+                                        <tr></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Type</td>
+                                            <td>
+                                                <select data-bind="options: satvm.ZoneTypeList,optionsCaption:'Choose a type...',optionsText:'name',optionsValue:'zoneTypeId', value: zoneTypeId, event:{change: satvm.SelectedZoneType}"></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td><input type="text" data-bind="value: name" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Go Zone</td>
+                                            <td><input type="checkbox" data-bind="checked: allowedZone, click: satvm.changeZoneColor" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Enabled</td>
+                                            <td><input type="checkbox" data-bind="checked: enabled" /></td>
+                                        </tr>
+                                        <!--<tr>
+                                            <td>Color</td>
+                                            <td><div id="color-palette-new-form"></div></td>
+                                        </tr>-->
+                                    </tbody>
+                                </table>
+
+                                <a href="#" class="btn btn-xs btn-default zone-btn" onclick="createZone();"><i class="fa fa-save"></i>&nbsp;Save</a>
+                                <a href="#" class="btn btn-xs btn-default zone-btn cancel-btn" onclick="handMode(); hideOverlay(selectedOverlay)"><i class="fa fa-close"></i>&nbsp;Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Landmarks-->
+            <div class="right-side-panel-menu-item-container" id="landmarks">
+                <div class="side-panel-menu-item-header">
+                    <img src="../Content/images/function_items/manage_landmarks.png" class="spro-panel-icon" />&nbsp;Landmarks
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="poi-content" id="tabs">
+                            <ul>
+                                <li><a href="#poiList" onclick="handMode(); hideOverlay(selectedOverlay);">List</a></li>
+                                <li><a href="#poiNew"><i class="fa fa-plus" title="New" onclick="clearOverlayAll(); clearOverlaySelection();"></i>&nbsp;New</a></li>
+                            </ul>
+                            <div id="poiList">
+                                <table class="table table-condensed table-hover" id="pointOfInterest-table" data-bind="visible: satvm.PointOfInterestList().length > 0">
+                                    <thead>
+                                        <tr>
+                                            <td colspan="5" align="left"><a class="btn btn-xs btn-default" data-bind="click: satvm.PointOfInterestExport">Export</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>Type</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach:PointOfInterestList">
+                                        <tr>
+                                            <td data-bind="text: name(), click: satvm.PointOfInterestLabel" class="object-item"></td>
+                                            <td data-bind="pointOfInterestName: pointOfInterestTypeId"></td>
+                                            <td><a><i class="fa fa-pencil" data-bind="click: satvm.PointOfInterestSelect, attr:{title: 'edit ' + name() + ' landmark'}"></i></a></td>
+                                            <td><a><i class="fa fa-trash" data-bind="click: satvm.PointOfInterestDelete, attr:{title: 'delete ' + name() + ' landmark'}"></i></a></td>
+                                            <td style="display:none;">
+                                                <table data-bind="foreach: geocoordinateList">
+                                                    <tr>
+                                                        <td data-bind="text: longitude"></td>
+                                                        <td data-bind="text: latitude"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div id="poiNew">
+                                <table class="table table-condensed table-hover" data-bind="with: NewPointOfInterest">
+                                    <thead>
+                                        <tr></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Type</td>
+                                            <td>
+                                                <select data-bind="options: satvm.PointOfInterestTypeList,optionsCaption:'Choose a type...',optionsText:'name',optionsValue:'pointOfInterestTypeId', value: pointOfInterestTypeId, event:{change: satvm.SelectedPointOfInterestType}"></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td><input type="text" data-bind="value: name" /></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+
+                                <a href="#" class="btn btn-xs btn-default zone-btn" onclick="createPointOfInterest()"><i class="fa fa-save"></i>&nbsp;Save</a>
+                                <a href="#" class="btn btn-xs btn-default zone-btn cancel-btn" onclick="handMode(); hideOverlay(selectedOverlay)"><i class="fa fa-close"></i>&nbsp;Cancel</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Measure Route-->
+            <div class="right-side-panel-menu-item-container" id="measureRoute">
+                <div class="side-panel-menu-item-header">
+                    <img src="../Content/images/function_items/ruler.png" class="spro-panel-icon" />&nbsp;Measure Route
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="group-panel">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td><a href="#" class="btn btn-xs btn-default ruler-btn-straight"></a>&nbsp;&nbsp;<a href="#" class="btn btn-xs btn-default ruler-btn-snap"></a></td>
+
+                                </tr>
+                                <tr>
+                                    <td>Total Distance</td>
+                                    <td id="map-ruler-total"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="right-object-panel">
+                            <table class="table table-condensed table-hover" id="route-table" data-bind="visible: satvm.RouteList().length > 0">
+                                <thead>
+
+                                    <tr>
+                                        <td colspan="5" align="right"><a class="btn btn-xs btn-default" data-bind="click: satvm.RouteExport">Export</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Distance (m)</td>
+                                        <td>Latitude</td>
+                                        <td>Longitude</td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: RouteList">
+                                    <tr>
+                                        <td data-bind="text: name"></td>
+                                        <td data-bind="text: rulerlength"></td>
+                                        <td data-bind="text: latitude"></td>
+                                        <td data-bind="text: longitude"></td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--Trace Asset-->
+            <div class="right-side-panel-menu-item-container" id="traceAsset">
+                <div class="side-panel-menu-item-header">
+                    <img src="../Content/images/function_items/ruler.png" class="spro-panel-icon" />&nbsp;Trace Asset
+                </div>
+                <div class="side-panel-menu-item-body">
+                    <div class="container-panel">
+                        <div class="group-panel">
+                            <table class="table table-condensed">
+                                <tr>
+                                    <td><a href="#" class="btn btn-default btn-xs trace-btn-asset"></a></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="right-object-panel">
+                            <table class="table table-condensed table-hover" id="route-table" data-bind="visible: satvm.RouteList().length > 0">
+                                <thead>
+                                </thead>
+                                <tbody data-bind="foreach: RouteList">
+                                    <tr></tr>
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+    <div class="filtered-status-panel-container">
+        <div class="filtered-status-panel-content">
+            <div class="btn-group filtered-status">
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Total')" data-slidetoggle="filters">
+                    <label class="filtered-status-value" data-bind="text:satvm.ObjectGPSInfoList().length"></label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'total'"></div>
+                    <i class="fa fa-square"></i>&nbsp;Total
+                </a>
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Active')" data-slidetoggle="filters">
+                    <label class="filtered-status-value" id="lblActive">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'active'"></div>
+                    <i class="fa fa-flash"></i>&nbsp;Active
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Inactive')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblInactive">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'inactive'"></div>
+                    <div class="filtered-status-panel-legend"></div>
+                    <i class="fa fa-close"></i>&nbsp;Inactive
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Go Zone')" data-slidetoggle="filters">
+                    <label class="filtered-status-value" id="lblGoZone">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'goZone'"></div>
+                    <i class="fa fa-check"></i>&nbsp;Go Zone
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('No Zone')" data-slidetoggle="filters">
+                    <label class="filtered-status-value" id="lblNoZone">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'noZone'"></div>
+                    <i class="fa fa-close"></i>&nbsp;No Zone
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Idling')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblIdling">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'idling'"></div>
+                    <i class="fa fa-flash"></i>&nbsp;Idling
+                </a>
+
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Driving')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblDriving">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'driving'"></div>
+                    <i class="fa fa-car"></i>&nbsp;Driving
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Overspeeding')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblOverspeeding">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'overspeeding'"></div>
+                    <i class="fa fa-flash"></i>&nbsp;Overspeeding
+                </a>
+
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Overidling')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblOveridling">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'overidling'"></div>
+                    <i class="fa fa-ambulance"></i>&nbsp;Overidling
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Parking')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblParking">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'parking'"></div>
+                    <i class="fa fa-hand-stop-o"></i>&nbsp;Parking
+
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('SOS')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblSOS">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'sos'"></div>
+                    <i class="fa fa-eye"></i>&nbsp;SOS
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('GPS Cut')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblGPSCut">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'gpsCut'"></div>
+                    <i class="fa fa-wifi"></i>&nbsp;Gps Cut
+                </a>
+
+                <a class="btn btn-xs btn-filter" onclick="filterSelect('Battery Cut')" data-slidetoggle="filters">
+
+                    <label class="filtered-status-value" id="lblBatteryCut">0</label>
+                    <br />
+                    <div class="filtered-status-panel-legend" data-bind="statusLegend: 'batteryCut'"></div>
+                    <i class="fa fa-battery-full"></i>&nbsp;Battery Cut
+                </a>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <!--<div id="ajax-loader">
+        <div id="ajax-loader-content" class="alert alert-info">
+            <h4 id="ajax-loader-text">Loading data... Please wait</h4>
+            <img src="../Content/images/ajax-loader.gif" />
+        </div>
+    </div>-->
+    <div id="alert_placeholder"></div>
+
+
+
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&v=3.18&libraries=drawing,geometry">
+    </script>
+    <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script src="../Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="../Scripts/moment.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="../Scripts/jasny-bootstrap.min.js"></script>
+    <script src="../Scripts/knockout-3.3.0.js"></script>
+    <script src="../Scripts/knockout.mapping-latest.js"></script>
+    <script src="../Scripts/linq.min.js"></script>
+    <script src="../Scripts/shared/common.js"></script>
+    <script src="../Scripts/google-marker-with-label.js"></script>
+    <script src="../Scripts/jquery-ui.min.js"></script>
+    <script src="../Scripts/shared/infobox.js"></script>
+    <script src="../Scripts/shared/filter_by_status.js"></script>
+    <script src="../Scripts/jquery-ui-timepicker.js"></script>
+    <script src="../Scripts/shared/geofence.js"></script>
+    <script src="../Scripts/shared/nearby_object.js"></script>
+    <script src="../Scripts/shared/marine_data.js"></script>
+    <script src="../Scripts/shared/map_ruler.js"></script>
+    <script src="../Scripts/shared/marker_cluster.js"></script>
+    <script src="../Scripts/shared/exportToCSV.js"></script>
+    <script src="../Scripts/shared/asset_tracer.js"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+
+
+
+            //if token is not present, logout the user
+            if (token) { }
+            else {
+                logout();
+            }
+
+            //extend hover tooltip to jquery ui for more customization options
+            $(document).tooltip();
+
+            //set logged in username
+            $("#user-name").html(username);
+
+
+
+            //ajax loader
+            $(document).ajaxStop(function () {
+                $('#ajax-loader').hide();
+            });
+            $(document).ajaxStart(function () {
+                $('#ajax-loader').show();
+
+                setTimeout(function () {
+                    $('#ajax-loader-text').text("It seems that your computer's internet is slow... it might take more time, please wait.");
+                }, 10000);
+
+                setTimeout(function () {
+                    $('#ajax-loader-text').text('Almost there....');
+                }, 25000);
+            });
+
+            //tabs
+            $(".object-details-content").tabs();
+            $(".zone-content").tabs();
+            $(".poi-content").tabs();
+            $(".collapsible-panel").accordion({
+                collapsible: false,
+                active: $(".accordion div[defaultactive=true]").index(),
+                activate: function (event, ui) {
+                    $(this).show();
+                }
+            });
+
+            //initialize datetimepicker
+            $('.datetimepicker').datetimepicker({
+                timeFormat: "HH:mm",
+                dateFormat: "yy-mm-dd"
+            }).val(getDateTimeNs());
+
+            //hide the menu items when screen is resized
+            $(window).resize(function () {
+                $('.left-side-panel-menu-item-container').hide();
+                $('.left-side-panel-menu-item').removeClass('left-side-panel-menu-item-active');
+            });
+
+            //slide toggles for menu items
+            $('.btn-filter').click(function () {
+                $(this).addClass('side-panel-menu-item-active');
+                var target = $(this).attr('data-slidetoggle');
+                $('#' + target).show("slide");
+
+                $('#filtersMenuItem').addClass('side-panel-menu-item-active');
+            });
+
+
+
+            $('.left-side-panel-menu-item').click(function () {
+                if ($(this).hasClass('side-panel-menu-item-active')) {
+                    $('.left-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                    $('.left-side-panel-menu-item-container').hide("slide");
+                }
+                else {
+                    $('.left-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                    $('.left-side-panel-menu-item-container').hide("slide");
+
+                    $(this).addClass('side-panel-menu-item-active');
+                    var target = $(this).attr('data-slidetoggle');
+                    $('#' + target).show("slide");
+                }
+            });
+
+
+            $('.right-side-panel-menu-item').click(function () {
+                if ($(this).hasClass('side-panel-menu-item-active')) {
+                    $('.right-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                    $('.right-side-panel-menu-item-container').hide("slide", { direction: "right" });
+                }
+                else {
+                    $('.right-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                    $('.right-side-panel-menu-item-container').hide("slide", { direction: "right" });
+
+                    $(this).addClass('side-panel-menu-item-active');
+                    var target = $(this).attr('data-slidetoggle');
+                    $('#' + target).show("slide", { direction: "right" });
+                }
+            });
+
+            //Hide Right Panel Through Cancel
+            $('.cancel-btn').click(function () {
+
+                $('.right-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                $('.right-side-panel-menu-item-container').hide("slide", { direction: "right" });
+
+            });
+
+            $("#zoneNew-tab").on("click", function () {
+                satvm.NewZone(new zoneModel());
+                buildColorPaletteNewForm();
+                clearOverlaySelection();
+                clearOverlayAll();
+            });
+
+
+
+
+            //initialize objects
+            function initialize() {
+                //set up map configurations
+                var mapOptions = {
+                    zoom: 10,
+                    center: new google.maps.LatLng(14.12, 121.36),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP,
+                    zoomControl: true,
+                    zoomControlOptions: {
+                        position: google.maps.ControlPosition.LEFT_BOTTOM,
+                        style: google.maps.ZoomControlStyle.SMALL
+                    }
+
+
+                };
+
+                map = new google.maps.Map(document.getElementById('map-canvas'),
+                    mapOptions);
+
+
+
+
+                //polygon configurations
+                var _polygonOptions = {
+                    strokeWeight: 0,
+                    fillOpacity: 0.45,
+                    editable: true,
+                    draggable: true,
+                    fillColor: selectedColor,
+                    strokeColor: selectedColor
+                };
+
+                //polygon configurations
+                var _polylineOptions = {
+                    strokeWeight: 1,
+                    fillOpacity: 0.45,
+                    editable: true,
+                    draggable: true,
+                    fillColor: selectedColor,
+                    strokeColor: selectedColor
+                };
+
+                //circle configurations
+                var _circleOptions = {
+                    strokeWeight: 0,
+                    fillOpacity: 0.45,
+                    editable: true,
+                    draggable: true,
+                    fillColor: selectedColor,
+                    strokeColor: selectedColor
+                };
+
+                //maerker configurations
+                var _markerOptions = {
+                    draggable: true
+                };
+
+
+                //drawing manager options
+                drawingManager = new google.maps.drawing.DrawingManager({
+                    drawingMode: null,
+                    drawingControl: false,
+                    drawingControlOptions: {
+                        position: google.maps.ControlPosition.BOTTTOM_LEFT,
+                        drawingModes: null
+                    },
+                    polygonOptions: _polygonOptions,
+                    circleOptions: _circleOptions,
+                    polylineOptions: _polylineOptions,
+                    map: map
+                });
+
+                //hook to drawing manager drawing complete
+                google.maps.event.addListener(drawingManager, 'overlaycomplete', function (e) {
+                    //switch to hand mode
+                    handMode();
+
+                    var newOverlay;
+                    newOverlay = e.overlay;
+                    newOverlay.setOptions({ editable: true, draggable: false });
+
+                    switch (e.type) {
+                        //if POLYGON
+                        case google.maps.drawing.OverlayType.POLYGON:
+
+                            registerPolygonEvents(newOverlay);
+                            var polygonArea = computeAreaPolygon(newOverlay.getPath());
+                            newOverlay['type'] = 'Polygon';
+                            newOverlay['areaInMeters'] = polygonArea;
+                            switch (geofenceMode) {
+                                case "zone":
+                                    selectedOverlay = newOverlay;
+                                    break;
+                                default:
+                            }
+
+                            break;
+                            //if POLYLINE
+                        case google.maps.drawing.OverlayType.POLYLINE:
+                            newOverlay['type'] = 'Polyline';
+                            selectedOverlay = newOverlay;
+
+                            break;
+                            //if CIRCLE
+                        case google.maps.drawing.OverlayType.CIRCLE:
+                            registerCircleEvents(newOverlay);
+                            var circleRadius = newOverlay.getRadius();
+                            var circleArea = computeAreaCircle(circleRadius);
+
+                            newOverlay['type'] = 'Circle';
+                            newOverlay['radius'] = newOverlay.getRadius();
+                            newOverlay['areaInMeters'] = circleArea;
+
+                            switch (geofenceMode) {
+                                case "zone":
+                                    selectedOverlay = newOverlay;
+                                    break;
+                                default:
+                            }
+                            break;
+                        case google.maps.drawing.OverlayType.MARKER:
+
+                            switch (geofenceMode) {
+                                case "pointOfInterest":
+                                    registerMarkerEvents(newOverlay);
+                                    newOverlay.setOptions({ icon: '../Content/images/marker/' + markerIcon + '.png' });
+                                    newOverlay['type'] = 'Marker';
+                                    newOverlay['radius'] = 100;
+                                    selectedOverlay = newOverlay;
+                                    break;
+                                case "ruler":
+                                    //selectedOverlay = newOverlay;
+                                    break;
+                                default:
+                            }
+
+
+
+                            break;
+                        default:
+                            break;
+                    }
+
+                    selectedOverlay = newOverlay;
+
+                })
+
+                //initilize map tools
+                var maptools = document.getElementById("map-tools");
+
+                drawingManager.setMap(map);
+                map.controls[google.maps.ControlPosition.TOP_CENTER].push(maptools);
+
+                var trafficLayer = new google.maps.TrafficLayer();
+                trafficLayer.setMap(map);
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+
+
+
+
+
+
+            //function to dynamically change the icon of the object
+            ko.bindingHandlers.objectStatusIconator = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+                    // First get the latest data that we're bound to
+                    var value = valueAccessor();
+
+                    // Next, whether or not the supplied model property is observable, get its current value
+                    var objectId = ko.unwrap(value);
+
+                    if (satvm.ObjectGPSInfoList().length > 0) {
+                        var query = Enumerable.From(satvm.ObjectGPSInfoList())
+                        .Where(function (x) { return x.objectId == objectId })
+                        .ToArray();
+                        if (query[0]) {
+                            $(element).removeClass('fa-refresh').addClass('fa-location-arrow');
+                        }
+                    }
+                }
+            };
+
+            //function to convert poi id to poi name
+            ko.bindingHandlers.pointOfInterestName = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+                    // First get the latest data that we're bound to
+                    var value = valueAccessor();
+                    var pointOfInterestTypeName = pointOfInterestTypeLookUp(value());
+                    $(element).text(pointOfInterestTypeName);
+
+                }
+            };
+
+            //Custom Binding - Update Slide Max and Min Value
+            ko.bindingHandlers.slideUpdater = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+                    var value = valueAccessor();
+                    var selectedSensor = ko.unwrap(value).selectedSensor;
+                    var param = ko.unwrap(value).param;
+
+                    setSlider(selectedSensor);
+                    switch (param) {
+                        case "maxValue":
+                            return selectedSensor.maxValue();
+                            break;
+                        case "minValue":
+                            return selectedSensor.minValue();
+                            break;
+                        default:
+
+                    }
+                }
+            };
+
+            ko.bindingHandlers.normalUpdater = {
+                init: function (element, valueAccessor) {
+                    var value = valueAccessor();
+                    var selectedSensor = ko.unwrap(value);
+
+                    $(".slider-range").on("slidechange", function (event, ui) {
+                        selectedSensor.normalMinValue = ui.values[0];
+                        selectedSensor.normalMaxValue = ui.values[1];
+
+                    });
+
+                },
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+                    var value = valueAccessor();
+                    var selectedSensor = ko.unwrap(value).selectedSensor;
+                    var param = ko.unwrap(value).param;
+
+                    $(".slider-range").on("slidechange", function (event, ui) {
+                        selectedOverlay['radius'] = ui.values[0];
+                        selectedOverlay['areaInMeters'] = computeAreaCircle(ui.values[0]);
+
+                    });
+
+                    return selectedSensor;
+                }
+            };
+
+            ko.bindingHandlers.speedInKnots = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+                    var value = valueAccessor();
+                    var history = ko.unwrap(value);
+                    var speed = history.speed();
+
+
+
+                    var result = numberWithCommas(speed) + ' knots';
+                    $(element).text(result);
+
+                }
+            }
+
+            ko.bindingHandlers.statusIcon = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+
+
+                    var value = valueAccessor();
+                    var history = ko.unwrap(value);
+                    var speed = history.speed();
+
+                    var status = getAssetStatus(history.speed(), history.status(), history.gpsTime(),'icon');
+                    //console.log('historylist/status color: ' + status.color);
+                    $(element).css({ "color": status.color });
+                    $(element).attr("title", status.status);
+
+                }
+            }
+
+            ko.bindingHandlers.statusLegend = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+
+
+                    var value = valueAccessor();
+
+
+                    var status = getColorStatus(value);
+
+                    $(element).css({ "background-color": status.color });
+                    $(element).attr("title", status.status);
+
+                }
+            }
+
+
+            ko.bindingHandlers.statusDescription = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+
+
+                    var value = valueAccessor();
+                    var history = ko.unwrap(value);
+                    var speed = history.speed();
+
+
+                    //console.log('status des' + history.status());
+                    //console.log('status des' + history.status);
+                    var status = getAssetStatus(history.speed(), history.status(), history.gpsTime(),'desc');
+                    //console.log('historylist/status color: ' + status.color);
+                    //$(element).css({ "color": status.color });
+                    //$(element).attr("title", status.status);
+                    $(element).text(status.status);
+                }
+            }
+
+
+
+            ko.bindingHandlers.decimalToDMS = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+                    var value = valueAccessor();
+                    var history = ko.unwrap(value);
+                    var latitude = history.latitude();
+                    var longitude = history.longitude();
+
+
+                    var result = convertDecimalToDMS(latitude, longitude);
+                    $(element).text(result);
+
+                }
+            }
+
+            ko.bindingHandlers.radiusSliderVisibility = {
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+
+                    var value = valueAccessor();
+                    var zoneTypeId = ko.unwrap(value);
+                    var zoneType = zoneTypeLookUp(zoneTypeId);
+
+
+                    switch (zoneType) {
+                        case "Circle":
+                            $(element).show();
+                            break;
+                        case "Polygon":
+                            $(element).hide();
+
+                            break;
+                        default:
+
+                    }
+                }
+            }
+
+
+
+            //Set Slider Function
+            function setSlider(sens) {
+                var max = sens.maxValue();
+                var min = sens.minValue();
+
+                var normax = sens.normalMaxValue();
+                var normin = sens.normalMinValue();
+
+
+                $(".slider-range").slider({
+                    orientation: "horizontal",
+                    range: true,
+                    //values: [normin,normax],
+                    //min: min,
+                    //max: max,
+                    values: [normin, normax],
+                    min: min,
+                    max: max,
+                    step: 1,
+                    slide: function (event, ui) {
+                        $("#amount").val("Min: " + ui.values[0] + "   |   Max: " + ui.values[1]);
+                    },
+                    stop: function (event, ui) {
+
+                    }
+                });
+                $("#amount").val("Min:" + $(".slider-range").slider("values", 0) + "   |   Max: " + $(".slider-range").slider("values", 1));
+
+            };
+
+            var historyAjax;
+            function abortHistoryRequest() {
+                historyAjax.abort();
+            }
+
+            //the knockout object
+            function SatViewModel() {
+                var self = this;
+
+
+                self.FilteredGPSHistory = ko.observableArray();
+                self.AccountSettings = ko.observable(new accountModel("", "", ""));
+                self.ObjectList = ko.observableArray();
+                self.ObjectGPSInfoList = ko.observableArray("");
+                self.SelectedObject = ko.observable("");
+                self.TracedObject = ko.observableArray();
+                self.GeoFences = ko.observableArray("");
+                self.SelectedGeoFenceId = ko.observable(0);
+                self.SelectedGeoFence = ko.observable();
+                self.SelectedGeoShapeId = ko.observable(0);
+                self.ObjectGPSInfoHistory = ko.observableArray("");
+                self.SettingsList = ko.observableArray();
+                self.StatusFilters = ko.observableArray([
+                    'Total'
+                    , 'Active'
+                    , 'Inactive'
+                    , 'Go Zone'
+                    , 'No Zone'
+                    , 'Idling'
+                    , 'Driving'
+                    , 'Overspeeding'
+                    , 'Overidling'
+                    , 'Parking'
+                    , 'SOS'
+                    , 'GPS Cut'
+                    , 'Battery Cut'
+                ]);
+
+                self.NearbyDistanceLimit = ko.observable(10000);
+
+                self.NearbyDistanceLimit.subscribe(function (nearby) {
+                    text = $('.nearby-asset-btn').text();
+                    if (text == "Search") {
+                        createAlert('Please click Search button first.', 'danger');
+                    }
+                    else {
+                        if (markerClosest) {
+                            markerClosest.setMap(null);
+                            polyLineList.forEach(function (m) {
+                                m.setMap(null);
+                            });
+                            polyLineList.length = 0;
+                        }
+
+                        getClosestObjects(eventLatLng);
+
+                    }
+                });
+
+                self.FuelTypeOptions = ko.observableArray([
+                    new fuelTypeModel(0, "Diesel"),
+                    new fuelTypeModel(1, "Petrol")
+                ]);
+
+                self.DistanceLimit = ko.observableArray([
+                    new distanceLimitModel(10000, "10 km"),
+                    new distanceLimitModel(50000, "50 km"),
+                    new distanceLimitModel(100000, "100 km")
+                ]);
+
+
+                //marine data
+                self.MarineData = ko.observable("");
+
+                //settings
+                self.SelectedObjectSettings = ko.observable("");
+                //self.SelectedObjectSettings.subscribe(function (obj) {
+                //    satvm.SelectedObject();
+                //});
+
+
+
+                self.SelectedSensor = ko.observable();
+                self.SelectedSensor.subscribe(function (sens) {
+                    if (sens.maxValue < sens.minValue) {
+                        sens.maxValue(sens.minValue + 1);
+                    } else {
+                        setSlider(sens);
+                    }
+                });
+
+                //nearby objects
+                self.NearbyObjects = ko.observableArray();
+
+                //filtered objects
+                self.FilteredObjects = ko.observableArray();
+                self.SelectedFilter = ko.observable();
+                self.Active = ko.observableArray();
+                self.Inactive = ko.observableArray();
+                self.Overidling = ko.observableArray();
+                self.Overspeeding = ko.observableArray();
+                self.Parking = ko.observableArray();
+                self.SOS = ko.observableArray();
+                self.BatteryCut = ko.observableArray();
+                self.GpsCut = ko.observableArray();
+                self.Driving = ko.observableArray();
+                self.Idling = ko.observableArray();
+                self.GoZone = ko.observableArray();
+                self.NoZone = ko.observableArray();
+
+                //return course direction
+                self.CourseName = ko.computed(function () {
+
+
+                    if (self.SelectedObject()) {
+
+                        return getDirectionCourse(self.SelectedObject().course);
+                    }
+                });
+
+                //return lon lat as degrees
+                self.CoordinatesInDegrees = ko.computed(function () {
+                    if (self.SelectedObject()) {
+                        return convertDecimalToDMS(self.SelectedObject().latitude, self.SelectedObject().longitude);
+                    }
+                });
+
+                //convert kph to knots
+                self.SpeedInKnots = ko.computed(function () {
+                    if (self.SelectedObject()) {
+                        //return numberWithCommas(kphToKnots(self.SelectedObject().speed())) + ' knots';
+                        return numberWithCommas(self.SelectedObject().speed) + ' knots';
+                    }
+                });
+
+                //kph
+                self.SpeedInKph = ko.computed(function () {
+                    if (self.SelectedObject()) {
+                        return numberWithCommas(self.SelectedObject().speed) + ' kph';
+                    }
+                });
+
+
+                //create a distinct list of customer name from objectbasic data
+                self.CustomerList = ko.computed(function () {
+                    return ko.utils.arrayGetDistinctValues(
+                        ko.utils.arrayMap(self.ObjectList(), function (p) {
+                            return p.customerName;
+                        })
+                    );
+                });
+
+
+
+                //knockout function on zone's allowedZone switch to color green or red
+                self.changeZoneColor = function (zone) {
+                    var allowedZone = zone.allowedZone();
+
+                    if (allowedZone === true) {
+                        selectColor("#80f015");
+                        if (selectedOverlay) {
+                            selectedOverlay['color'] = "#80f015";
+                            setSelectedOverlayColor("#80f015");
+                        }
+                    }
+                    else {
+                        selectColor("#f01515");
+                        if (selectedOverlay) {
+                            selectedOverlay['color'] = "#f01515";
+                            setSelectedOverlayColor("#f01515");
+                        }
+                    }
+                    return true;
+                }
+
+                //knockout subscription for object gps info list when it is modified/added/deleted
+                self.ObjectGPSInfoList.subscribe(function (changes) {
+
+                    satvm.Active([]);
+                    satvm.GoZone([]);
+                    satvm.NoZone([]);
+                    satvm.Inactive([]);
+                    satvm.Overidling([]);
+                    satvm.Parking([]);
+                    satvm.SOS([]);
+                    satvm.GpsCut([]);
+                    satvm.BatteryCut([]);
+                    satvm.Driving([]);
+                    satvm.Idling([]);
+
+
+                    self.ObjectGPSInfoList().forEach(function (entry) {
+                        var res = new assetModel(entry);
+                        //objectmarker
+                        var c;
+                        var obm = objectMarkersLookup(res.objectId);
+
+                        if (obm) {
+                            var latlng = new google.maps.LatLng(res.latitude, res.longitude);
+                            obm.setPosition(latlng);
+                            updateObjectMarker(res, obm);
+                            objectMarker = obm;
+                            var sobj = satvm.SelectedObject().objectId;
+                            if (sobj == res.objectId) {
+                                satvm.SelectedObject(res);
+                                map.setCenter(objectMarker.getPosition());
+                            }
+                        }
+                        else {
+                            objectMarker = createObjectMarker(res, true);
+                            objectMarkers[objectMarkers.length] = objectMarker;
+                        }
+
+                        //object status icon
+                        ////$(element).removeClass("fa fa-spin");
+                        //$(element).attr("src", "../Content/images/loader/gps_loaded.png");
+
+                        filterByStatus(res);
+
+                        //var obs = res.status();
+                        //if (obs != null) {
+                        //    var sos = obs.indexOf('SOS') != -1;
+                        //    var batteryCut = obs.indexOf('Battery Cut') != -1;
+                        //    var gpsCut = obs.indexOf('GPS Cut') != -1;
+                        //    var overidle = obs.indexOf('Over Idle') != -1;
+                        //    var isAlert = (sos == true || batteryCut == true || gpsCut == true || overidle == true);
+
+                        //    console.log(isAlert);
+
+                        //    if (isAlert) {
+                        //        $(element).css({"color": "red"});
+                        //    }
+
+                        //}
+
+
+
+
+                        self.SettingsList().forEach(function (os) {
+
+                            self.ObjectGPSInfoList().forEach(function (dt) {
+                                if (dt.status()) {
+                                    //Overspeeding
+
+                                    if (os.objectId() == dt.objectId()) {
+                                        os.sensorList().forEach(function (sl) {
+                                            var statOn = dt.status().indexOf('ACC On') != -1;
+                                            var _overspeed = dt.speed() >= sl.maxThresholdValue() && statOn === true;
+                                            if (_overspeed == true) {
+                                                satvm.Overspeeding([]);
+                                                var element = $('.status-icon[data-status="' + res.objectId() + '"]');
+                                                self.Overspeeding.push(dt);
+
+                                                $(element).css({ "color": "#ff0000" });
+                                            }
+
+                                        })
+                                    }
+
+
+
+
+
+                                }
+                            })
+                        })
+                    });
+
+
+
+                    gpsInfoReady = true;
+                });
+
+
+                //History Select
+
+                self.HistorySelect = function (hst) {
+
+                    if (historyAnimationInterval) {
+                        clearInterval(historyAnimationInterval);
+                    };
+
+                    if (historyLine) {
+                        historyLine.setOptions({
+                            icons: null
+                        });
+                    }
+
+                   
+                    //lineSymbol.setMap(null);
+
+                    var latlng = new google.maps.LatLng(hst.latitude(), hst.longitude());
+                    //if (historyMarkers.length >= 1) {
+                    //    historyMarkers.forEach(function (h) { h.setMap(null); });
+
+                    //}
+                    //<i class='fa fa-circle' style='color:"+ status.color +"'>
+                    var status = getAssetStatus(hst.speed(), hst.status(), hst.gpsTime(), 'history');
+
+                    if (historyMarker) { historyMarker.setMap(null); }
+
+
+
+
+                    var labelCon = "<table><tr><td><i class='fa fa-circle' style='color:" + status.color + "'></i></td><td>&nbsp;" + status.status + "</td></tr>" +
+                "<tr><td><i class='fa fa-clock-o'></i></td><td>&nbsp;" + hst.gpsTime() + "</td></tr>" +
+                "<tr><td><i class='fa fa-bolt'></i></td><td>&nbsp;" + hst.speed() + " kph</td></tr></table>";
+
+                    historyMarker = new MarkerWithLabel({
+                        icon: {
+                            path: google.maps.SymbolPath.CIRCLE,
+                            scale: 8,
+                            strokeColor: status.color
+                        },
+                        position: latlng,
+                        rotate: 200,
+                        draggable: false,
+                        raiseOnDrag: true,
+                        labelContent: labelCon,
+                        labelAnchor: new google.maps.Point(50, 0),
+                        labelClass: "label-map-history", // the CSS class for the label
+                        labelStyle: { opacity: 0.75 }
+                    });
+
+
+
+
+                    historyMarker.setMap(map);
+
+                    map.setCenter(latlng);
+                    map.setZoom(18);
+
+
+                    //var historyMarkersDistance = [];
+                    //var wholeDist = google.maps.geometry.spherical.computeDistanceBetween(polylineList[0], polylineList[polylineList.length - 1]);
+                    //historyMarkers.push(historyMarker);
+                    //historyMarkersDistance = polylineList.length * google.maps.geometry.spherical.computeDistanceBetween(latlng, polylineList[0]) / wholeDist;
+                    //animCounts.push(historyMarkersDistance);
+                    //isPaused = true;
+                    //clearInterval(historyInterval);
+                    //historyLine.setOptions({
+                    //    icons: [{
+                    //        offset: '0%',
+                    //    }],
+                    //});
+                    //historyLine.setMap(map);
+                    //var markerHistory = new google.maps.Marker({
+                    //    map: map,
+                    //    position: hst.latlng,
+                    //});
+
+                    //map.setCenter(historyMarker.getPosition());
+                    //map.setZoom(18);
+                }
+
+
+
+
+                //knockout function to create/pan to marker when an object is selected
+                self.ObjectSelect = function (obj) {
+                    if (markerClosest) {
+                        markerClosest.setMap(null);
+                    }
+
+                    polyLineList.forEach(function (p) {
+                        p.setOptions({ visible: false });
+                    });
+
+
+                    var ob;
+                    try {
+                        ob = obj.objectId();
+                    } catch (e) {
+                        ob = obj.objectId;
+                    }
+
+                    if (self.ObjectGPSInfoList().length < 1) {
+                        console.log(ob)
+                        overWriteSelectedObject(ob);
+                        //createAlert('No GPS Data available yet for ' + obj.objectName(), 'warning');
+                        return;
+                    }
+
+                    //GPS info
+                    self.ObjectGPSInfoHistory("");
+                    $('.clickable-object').on('click', function () {
+                        $('.clickable-object').removeClass('active-object');
+                        $(this).addClass('active-object');
+                    });
+                    var res = ko.utils.arrayFilter(self.ObjectGPSInfoList(), function (dt) {
+                        return ob === dt.objectId();
+                    });
+
+                    if (res[0]) {
+
+                        var res = new assetModel(res[0]);
+
+                        satvm.SelectedObject(res);
+                        satvm.MarineData(null);
+                        getMarineData(res.latitude, res.longitude);
+                        panToObjectMarker(res);
+
+                        //console.log("objectsel: " + res.status);
+                        //satvm.TracedObject([]);
+                        //satvm.TracedObject(satvm.SelectedObject());
+                        //console.log(satvm.TracedObject().status());
+
+                        self.ObjectList().forEach(function (cus) {
+                            cus.objectList().forEach(function myfunction(obj) {
+                                if (obj.objectId() == res.objectId) {
+                                    self.SelectedObjectSettings(obj);
+                                }
+                            })
+
+                        });
+                    }
+                    else {
+                        createAlert('No GPS Data available yet for ' + obj.objectName(), 'warning');
+                    }
+
+                    //Object Settings
+                    var set = ko.utils.arrayFilter(self.SettingsList(), function (dt) {
+                        return ob === dt.objectId();
+
+                    });
+                    //show asset details
+                    $('.right-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                    $('.right-side-panel-menu-item-container').hide("slide", { direction: "right" });
+                    $('#assetDetails').show("slide", { direction: "right" });
+                    $('#assetDetails').addClass('side-panel-menu-item-active');
+
+
+
+
+
+
+                }
+                //pan to nearby object
+
+                self.NearbyPan = function (obj) {
+
+
+                    if (self.ObjectGPSInfoList().length < 1) {
+                        createAlert('No GPS Data available yet for ' + obj.objectName(), 'warning');
+                        return;
+                    }
+                    var ob;
+                    try {
+                        ob = obj.objectId();
+                    } catch (e) {
+                        ob = obj.objectId;
+                    }
+                    //GPS info
+                    self.ObjectGPSInfoHistory("");
+                    $('.clickable-object').on('click', function () {
+                        $('.clickable-object').removeClass('active-object');
+                        $(this).addClass('active-object');
+                    });
+                    var res = ko.utils.arrayFilter(self.ObjectGPSInfoList(), function (dt) {
+                        return ob === dt.objectId();
+                    });
+
+                    if (res[0]) {
+                        satvm.MarineData(null);
+                        getMarineData(res[0].latitude(), res[0].longitude());
+                        panToObjectMarker(res[0]);
+                        var obm = objectMarkersLookup(res[0].objectId());
+                        map.setCenter(obm.getPosition());
+                        map.setZoom(18);
+                        if (markerClosest) {
+                            markerClosest.setMap(null);
+                        }
+
+                        polyLineList.forEach(function (p) {
+                            p.setOptions({ visible: false });
+                        });
+                    }
+                    else {
+                        createAlert('No GPS Data available yet for ' + obj.objectName(), 'warning');
+                    }
+
+                    //Object Settings
+                    var set = ko.utils.arrayFilter(self.SettingsList(), function (dt) {
+                        return ob === dt.objectId();
+                    });
+
+
+                    self.ObjectList().forEach(function (cus) {
+                        cus.objectList().forEach(function myfunction(obj) {
+                            if (obj.objectId() == res[0].objectId()) {
+
+                                //objectMarkers.forEach(function (o) {
+                                //    console.log("o: " + o.objectid + " m:" + obj.objectId);
+                                //    if (o.objectid == obj.objectId()) {
+
+                                //        o.setOptions({ visible: true });
+                                //    }
+                                //    else {
+
+                                //        o.setOptions({ visible: false });
+                                //    }
+                                //});
+
+                                self.SelectedObjectSettings(obj);
+                            }
+                        })
+                    });
+                }
+
+
+                self.PlayHistory = function () {
+                    historyLine.setOptions({
+                        icons: [{
+                            icon: lineSymbol,
+                            offset: '100%'
+                        }]
+                    });
+                    animateHistoryIcon(historyLine);
+                }
+
+                self.PauseHistory = function () {
+
+                }
+
+
+                //knockout function to select history
+                self.SelectHistory = function () {
+                
+                    getHistoryObjectGPSInfo();
+                }
+                //knockout function to clear the history
+                self.ClearHistory = function () {
+                    satvm.ObjectGPSInfoHistory([]);
+                    clearHistoryLine();
+
+
+                }
+
+                //knockout function to export history
+                self.ExportHistory = function () {
+                    var id = self.SelectedObject().objectId();
+                    var name = self.SelectedObject().objectName();
+                    var sdt = $('#sdt').datetimepicker()[0].value;
+                    var edt = $('#edt').datetimepicker()[0].value;
+                    var fileName = name + ' [' + id + '] ' + '_' + sdt + '-' + edt;
+                    $('#history-table').table2CSV({ header: ['ID :' + id, 'Asset: ' + name, 'Date Covered: ' + sdt + ' to ' + edt] }, fileName);
+                }
+
+                //knockout function to cancel select history
+                self.CancelHistory = function () {
+                    abortHistoryRequest();
+                }
+
+                //knockout subscription when a filter is changed
+                self.FilterSelect = function () {
+
+                    //filterSelect(self.SelectedFilter());
+                }
+
+                //Filter Select
+                self.SelectedFilter.subscribe(function (changes) {
+                    //console.log(changes);
+
+                    setTimeout(function () {
+                        switch (changes) {
+                            case 'Total':
+                                satvm.FilteredObjects(satvm.ObjectGPSInfoList());
+                                break;
+                            case 'Active':
+                                satvm.FilteredObjects(satvm.Active());
+                                break;
+                            case 'Inactive':
+                                satvm.FilteredObjects(satvm.Inactive());
+                                break;
+                            case 'Overidling':
+                                satvm.FilteredObjects(satvm.Overidling());
+                                break;
+                            case 'Overspeeding':
+                                satvm.FilteredObjects(satvm.Overspeeding());
+                                break;
+                            case 'Parking':
+                                satvm.FilteredObjects(satvm.Parking());
+                                break;
+                            case 'SOS':
+                                satvm.FilteredObjects(satvm.SOS());
+                                break;
+                            case 'GPS Cut':
+                                satvm.FilteredObjects(satvm.GpsCut());
+                                break;
+                            case 'Battery Cut':
+                                satvm.FilteredObjects(satvm.BatteryCut());
+                                break;
+                            case 'Driving':
+                                satvm.FilteredObjects(satvm.Driving());
+                                break;
+                            case 'Idling':
+                                satvm.FilteredObjects(satvm.Idling());
+                                break;
+                            case 'Go Zone':
+                                satvm.FilteredObjects(satvm.GoZone());
+                                break;
+                            case 'No Zone':
+                                satvm.FilteredObjects(satvm.NoZone());
+                                break;
+                            default:
+                                satvm.FilteredObjects([]);
+                                break;
+                        }
+
+
+                    }, 500);
+                });
+
+                //geofence objects
+                //zone
+                self.ZoneList = ko.observableArray();
+                self.ZoneTypeList = ko.observableArray();
+                self.SelectedZone = ko.observable();
+                self.SelectedZonePointOfInterest = ko.observable();
+                self.SelectedZoneType = ko.observable();
+                self.ZoneSelect = function (selectedZone) {
+                    satvm.SelectedPointOfInterest(null);
+                    satvm.SelectedZone(selectedZone);
+                    //buildColorPaletteEditForm();
+                    zoneList.forEach(function (zl) {
+
+                        if (selectedZone.geofenceId() == zl['geofenceId']) {
+                            switch (zl['type']) {
+                                case 'Circle':
+                                    createZoneCircleRadiusSlider(zl);
+                                    zl['radius'] = zl.getRadius();
+                                    $('.radius-label').text(zl.getRadius() + ' meters');
+                                    overlayEditMode(zl);
+                                    selectedOverlay = zl;
+                                    map.fitBounds(selectedOverlay.getBounds());
+                                    break;
+                                case 'Polygon':
+                                    overlayEditMode(zl);
+                                    selectedOverlay = zl;
+                                    map.fitBounds(selectedOverlay.getBounds());
+                                    break;
+                                default:
+                            }
+                        }
+                    });
+                };
+
+                //pan to zone
+
+                self.ZoneLabel = function (selectedZone) {
+                    satvm.SelectedPointOfInterest(null);
+                    //buildColorPaletteEditForm();
+                    zoneList.forEach(function (zl) {
+                        if (selectedZone.geofenceId() == zl['geofenceId']) {
+                            map.fitBounds(zl.getBounds());
+                        }
+                    });
+                };
+
+                self.ZoneExport = function (f) {
+                    var fileName = username + "_Zone List";
+
+                    $('#zone-table').table2CSV({ header: [] }, fileName);
+                    //JSONToCSVConvertor(ko.toJSON(satvm.ZoneList), fileName, true);
+                };
+
+                self.RouteExport = function (f) {
+                    var fileName = username + "_Route List";
+
+                    $('#route-table').table2CSV({ header: [] }, fileName);
+                    //JSONToCSVConvertor(ko.toJSON(satvm.ZoneList), fileName, true);
+                };
+
+                self.FilterExport = function (f) {
+                    var fileName = username + "_" + self.SelectedFilter() + " Filter List";
+
+                    $('#filter-table').table2CSV({ header: [] }, fileName);
+                    //JSONToCSVConvertor(ko.toJSON(satvm.ZoneList), fileName, true);
+                };
+
+                self.NearestExport = function (f) {
+                    var fileName = username + "_Nearest Asset List";
+                    $('#nearest-table').table2CSV({ header: [] }, fileName);
+                    //JSONToCSVConvertor(ko.toJSON(satvm.ZoneList), fileName, true);
+                };
+
+                //knockout function when a zone is deleted from the list
+                self.ZoneDelete = function (selectedZone) {
+                    satvm.SelectedPointOfInterest(null);
+                    satvm.SelectedZone(selectedZone);
+
+                    zoneList.forEach(function (zl) {
+
+                        if (selectedZone.geofenceId() == zl['geofenceId']) {
+                            switch (zl['type']) {
+                                case 'Circle':
+                                    createZoneCircleRadiusSlider(zl);
+                                    zl['radius'] = zl.getRadius();
+                                    overlayEditMode(zl);
+                                    selectedOverlay = zl;
+                                    map.fitBounds(selectedOverlay.getBounds());
+                                    break;
+                                case 'Polygon':
+                                    overlayEditMode(zl);
+                                    selectedOverlay = zl;
+                                    map.fitBounds(selectedOverlay.getBounds());
+                                    break;
+                                default:
+                            };
+                            var result = confirm("Are you sure you want to delete " + selectedZone.name() + " zone?");
+                            if (result) {
+                                deleteZone();
+                            }
+                        }
+
+
+                    });
+                };
+                self.NewZone = ko.observable();
+                self.SelectedZoneType.subscribe(function (changes) {
+
+                    var zoneTypeName = zoneTypeLookUp(changes.zoneTypeId);
+                    hideOverlay(selectedOverlay);
+                    switch (zoneTypeName) {
+                        case 'Circle':
+                            circleMode('zone');
+                            break;
+                        case 'Polygon':
+                            polygonMode('zone');
+                            break;
+                        default:
+                            handMode();
+                            break;
+                    }
+                })
+
+
+                //point of interest
+                self.PointOfInterestList = ko.observableArray();
+                self.SelectedPointOfInterest = ko.observable();
+                self.NewPointOfInterest = ko.observable(new pointOfInterestModel());
+                self.PointOfInterestTypeList = ko.observableArray();
+                self.SelectedPointOfInterestType = ko.observable();
+                self.SelectedPointOfInterestTypeEdit = ko.observable();
+                self.SelectedPointOfInterestType.subscribe(function (changes) {
+                    var pointOfInterestTypeName = pointOfInterestTypeLookUp(changes.pointOfInterestTypeId);
+                    hideOverlay(selectedOverlay);
+                    markerIcon = pointOfInterestTypeName;
+                    markerMode('pointOfInterest', pointOfInterestTypeName);
+
+                });
+                self.SelectedPointOfInterestTypeEdit.subscribe(function (changes) {
+
+                    self.SelectedPointOfInterest().pointOfInterestTypeId(changes);
+
+                    var pointOfInterestTypeName = pointOfInterestTypeLookUp(changes);
+                    var name = pointOfInterestTypeName;
+
+                    selectedOverlay.setOptions({ icon: '../Content/images/marker/' + name + '.png' });
+                });
+
+
+                //pan to landmark
+
+                self.PointOfInterestLabel = function (selectedPointofInterest) {
+                    satvm.SelectedPointOfInterest(null);
+                    //buildColorPaletteEditForm();
+                    pointOfInterestList.forEach(function (poi) {
+                        if (selectedPointofInterest.geofenceId() == poi['geofenceId']) {
+                            map.panTo(poi.getPosition());
+                        }
+                    });
+                };
+
+                self.PointOfInterestSelect = function (selectedPointOfInterest) {
+                    self.SelectedZone(null);
+                    pointOfInterestList.forEach(function (poi) {
+                        if (selectedPointOfInterest.geofenceId() == poi['geofenceId']) {
+                            selectedOverlay = poi;
+                            map.panTo(poi.getPosition());
+
+                            self.SelectedPointOfInterest(selectedPointOfInterest);
+                            self.SelectedPointOfInterestTypeEdit(self.SelectedPointOfInterest().pointOfInterestTypeId());
+
+                        }
+                    });
+                };
+                self.PointOfInterestDelete = function (selectedPointOfInterest) {
+                    self.SelectedZone(null);
+                    pointOfInterestList.forEach(function (poi) {
+
+                        if (selectedPointOfInterest.geofenceId() == poi['geofenceId']) {
+                            selectedOverlay = poi;
+                            map.panTo(poi.getPosition());
+
+                            self.SelectedPointOfInterest(selectedPointOfInterest);
+                            self.SelectedPointOfInterestTypeEdit(self.SelectedPointOfInterest().pointOfInterestTypeId());
+                            var result = confirm("Are you sure you want to delete " + selectedPointOfInterest.name() + " landmak?");
+                            if (result) {
+                                deletePointOfInterest();
+                            }
+                        }
+                    });
+
+
+                };
+
+                self.PointOfInterestExport = function (f) {
+
+                    var fileName = username + "_Landmark List";
+                    $('#pointOfInterest-table').table2CSV({ header: [] }, fileName);
+
+                    //JSONToCSVConvertor(ko.toJSON(satvm.PointOfInterestList), fileName, true);
+                };
+
+                //route
+                self.RouteList = ko.observableArray();
+                self.SelectedRoute = ko.observable();
+
+            }
+
+
+
+
+            //initiate call for the object basic data for the side panel list
+            getAllObjectBasic();
+
+
+            //initialize interval
+
+            ko.applyBindings(window.satvm = new SatViewModel());
+
+            startAssetInterval();
+
+
+        })
+
+
+
+        //function to compose/configure a google marker object for the object using gps info data
+        function createObjectMarker(res, visibility) {
+
+            var res = new assetModel(res);
+            //console.log("<i class='gps-loader-icon status-icon fa fa-circle' data-bind='attr:{'data-status':'" + res.objectId() + "'}'></i>&nbsp;" + res.objectName());
+            var assetStatus = getAssetStatus(res.speed(), res.status(), res.gpsTime(),'marker');
+
+            var objectMarker;
+            objectMarker = new MarkerWithLabel({
+                position: new google.maps.LatLng(res.latitude, res.longitude),
+                icon: objectMarkerIconCourse(res.course, 'truck'),
+                draggable: false,
+                raiseOnDrag: true,
+                map: map,
+                visible: visibility,
+                labelContent: "<i class='gps-loader-icon status-icon object-marker-label-status-icon fa fa-circle' style='color:" + assetStatus.color + "'></i>&nbsp;" + res.objectName,
+                labelAnchor: new google.maps.Point(50, 0),
+                labelClass: "label-map", // the CSS class for the label
+                labelStyle: { opacity: 0.75 }
+            });
+
+            updateObjectMarker(res, objectMarker);
+
+
+            google.maps.event.addListener(objectMarker, 'click', function () {
+                var self = this;
+                satvm.ObjectGPSInfoList().forEach(function (entry) {
+                    if (self['objectid'] === entry.objectId()) {
+                        satvm.SelectedObject(entry);
+                        getMarineData(entry.latitude(), entry.longitude());
+                        //setObjectMarkerAnimated(self);
+                    }
+                });
+                //show asset details
+                $('.right-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                $('.right-side-panel-menu-item-container').hide("slide", { direction: "right" });
+                $('#assetDetails').show("slide", { direction: "right" });
+                $('#assetDetails').addClass('side-panel-menu-item-active');
+
+                satvm.ObjectList().forEach(function (cus) {
+                    cus.objectList().forEach(function myfunction(obj) {
+                        if (obj.objectId() == res.objectId()) {
+                            satvm.SelectedObjectSettings(obj);
+                        }
+
+                    })
+
+                });
+
+
+
+            });
+
+            return objectMarker;
+        }
+
+
+
+
+
+
+        //PAN TO OBJECTMARKER
+        function panToObjectMarker(obj) {
+
+            var asset = new assetModel(obj);
+
+            var ob = asset.objectId;      
+
+            var objectMarker;
+            var obm = objectMarkersLookup(ob);
+            if (obm) {
+
+                objectMarker = obm;
+
+                //objectMarkers.forEach(function (o) {
+
+                //    o.setOptions({ visible: false });
+                //});
+
+                //objectMarker.setOptions({ visible: true });
+            }
+            else {
+
+                //console.log("yeah"+obj);
+
+                objectMarker =  createObjectMarker(asset, true);
+                objectMarkers[objectMarkers.length] = objectMarker;
+            }
+
+            map.setCenter(objectMarker.getPosition());
+            map.setZoom(18);
+
+        }
+
+
+        function getAllObjectBasic() {
+            $.ajax({
+                url: _getObjectBasic,
+                type: 'get',
+                headers: { 'content-type': 'application/x-www-form-urlencoded', 'accept': 'application/json', 'authorization': 'Bearer ' + token },
+                success: function (rdt) {
+                    ko.mapping.fromJS(rdt, {}, satvm.ObjectList);
+
+                    $('.clickable-customer').on('click', function () {
+
+                        var i = $(this).attr('collapse-id');
+
+                        var is = $("i[collapse-id-c='" + i + "']");
+
+                        if ($(this).hasClass('collapsed')) {
+                            is.removeClass('fa fa-folder').addClass('fa fa-folder-open');
+                        } else {
+                            is.removeClass('fa fa-folder-open').addClass('fa fa-folder');
+                        }
+                    });
+                    getZoneType();
+                    getPointOfInterestType();
+                },
+                error: function (e) {
+                    if (e != null) {
+                        createAlert(decryptErrorMessage(e), 'danger');;
+                    }
+                    else {
+                        createAlert('Internal Server Error. Please contact your administrator.', 'info');
+                    }
+                }
+            });
+        }
+
+
+
+
+        ///function to call the gps data of all objects
+        function getAllObjectGPSInfo() {
+            $.ajax({
+                url: _getAllObjectGPSInfo,
+                type: 'get',
+                headers: { 'content-type': 'application/x-www-form-urlencoded', 'accept': 'application/json', 'authorization': 'Bearer ' + token },
+                success: function (rdt) {
+                    ko.mapping.fromJS(rdt, {}, satvm.ObjectGPSInfoList);
+                },
+                error: function (e) {
+                    if (e != null) {
+
+                        createAlert(decryptErrorMessage(e), 'danger');;
+                    }
+                    else {
+                        alert('Internal Server Error. Please contact your administrator.');
+                    }
+                }
+            });
+        }
+
+        //function to get object settings of all object
+        function getObjectSettings() {
+            $.ajax({
+                url: _getObjectSettings,
+                type: 'get',
+                headers: { 'content-type': 'application/x-www-form-urlencoded', 'accept': 'application/json', 'authorization': 'Bearer ' + token },
+                success: function (obs) {
+                    ko.mapping.fromJS(obs, {}, satvm.SettingsList);
+                    getAllObjectGPSInfo();
+                },
+                error: function (e) {
+                    if (e != null) {
+
+                        createAlert(decryptErrorMessage(e), 'danger');;
+                    }
+                    else {
+                        alert('Internal Server Error. Please contact your administrator.');
+                    }
+                }
+
+            });
+        }
+
+        //function to clear historyline
+
+        function clearHistoryLine() {
+            if (historyLine) {
+                historyLine.setMap(null);
+            }
+
+
+            if (historyMarker) {
+                historyMarker.setMap(null);
+            }
+
+            historyMarkers.forEach(function (hm) {
+                hm.setMap(null);
+            });
+
+            historyDotMarkers.forEach(function (hdm) {
+                hdm.setMap(null);
+            });
+        };
+
+        //function to overwrite selectedobject
+
+        function overWriteSelectedObject(ObjectId) {
+
+            var ob;
+            try {
+                ob = ObjectId();
+            } catch (e) {
+                ob = ObjectId;
+            }
+
+
+            if (ob) {
+                $.ajax({
+                    url: _getAssetGPSInfo + '?ObjectId=' + ob,
+                    type: 'get',
+                    headers: { 'content-type': 'application/x-www-form-urlencoded', 'accept': 'application/json', 'authorization': 'Bearer ' + token },
+                    success: function (rdt) {
+                        console.log("rdt: "+ rdt);
+                        //ko.mapping.fromJS(rdt, {}, satvm.SelectedObject);
+                        var rdt = new assetModel(rdt);
+
+                        satvm.SelectedObject(rdt);
+
+                        console.log(satvm.SelectedObject())
+
+                        var trackCheck = $('#cbx_overlay_track').prop('checked');
+                        if (trackCheck == false) {
+                        } else {
+
+                            $('.right-side-panel-menu-item').removeClass('side-panel-menu-item-active');
+                            $('.right-side-panel-menu-item-container').hide("slide", { direction: "right" });
+
+                            panToObjectMarker(rdt);
+
+                            $('#assetDetails').show("slide", { direction: "right" });
+                            $('#assetDetails').addClass('side-panel-menu-item-active');
+                        }
+                        //console.log(satvm.SelectedObject);
+                        //satvm.ObjectGPSInfoList.push(satvm.SelectedObject());
+                        //var res = ko.utils.arrayFilter(satvm.ObjectGPSInfoList(), function (dt) {
+                        //    return dt.objectId() === ob;
+                        //});
+                        //var obm = objectMarkersLookup(ObjectId);
+                        //if (objectMarkers[0]) {
+                        //    var result = objectMarkers.splice(0, 1);
+                        //    console.log("bura");
+                        //    console.log(result[0]);
+                        //    result[0].setMap(null);
+                        //}
+                    }
+                });
+
+            }
+        };
+
+        //function to update user settings (password)
+
+        function updateUserSettings() {
+
+            var jsonObj = {
+                CurrentPassword: satvm.AccountSettings().currentPassword,
+                NewPassword: satvm.AccountSettings().newPassword,
+                ConfirmPassword: satvm.AccountSettings().confirmPassword
+            }
+
+            console.log("currentpassword: " + satvm.AccountSettings().newPassword);
+
+            $.ajax({
+                url: _updateUserSettings,
+                type: 'post',
+                data: jsonObj,
+                headers: { 'content-type': 'application/x-www-form-urlencoded', 'accept': 'application/json', 'authorization': 'Bearer ' + token },
+                success: function (res) {
+                    createAlert('Password has been successfully updated! Please log in again to continue...', 'info');
+                    alert("You will now be redirected...");
+                    logout();
+                },
+                error: function (e) {
+                    if (e != null) {
+                        createAlert(decryptErrorMessage(e), 'danger');;
+                    }
+                    else {
+                        alert('Internal Server Error. Please contact your administrator.');
+                    }
+
+                }
+            });
+        }
+
+
+
+        //function to update object settting of a certain object
+        function updateObjectSettings() {
+
+            var isNumber = isNaN(satvm.SelectedObjectSettings().fuelRatio());
+            if (isNumber == true) {
+                createAlert('Please check Fuel Ratio. Enter a number.', 'danger');
+            }
+            else {
+
+                var jsonObj = {
+                    ObjectId: satvm.SelectedObjectSettings().objectId,
+                    ObjectName: satvm.SelectedObjectSettings().objectName,
+                    SIM: satvm.SelectedObjectSettings().sim,
+                    FuelRatio: satvm.SelectedObjectSettings().fuelRatio,
+                    FuelType: satvm.SelectedObjectSettings().fuelType
+                }
+
+                $.ajax({
+                    url: _updateObjectSettings,
+                    type: 'post',
+                    data: jsonObj,
+                    headers: { 'content-type': 'application/x-www-form-urlencoded', 'accept': 'application/json', 'authorization': 'Bearer ' + token },
+                    success: function (res) {
+                        createAlert('Asset info have been successfully updated!', 'info');
+                        getAllObjectGPSInfo();
+                        overWriteSelectedObject(jsonObj.ObjectId());
+
+                    },
+                    error: function (e) { }
+                });
+            }
+
+        }
+        var historyLine;
+        var historyMarkers = [];
+        var isPaused = false;
+        var animCount = 0;
+        var animCounts = [0];
+        ///function to call the gps data of all objects
+        function getHistoryObjectGPSInfo() {
+
+            if (historyLine) {
+                clearHistoryLine();
+            };
+
+            var sdt = $('#sdt').datetimepicker()[0].value;
+            var edt = $('#edt').datetimepicker()[0].value;
+
+            var sdtobjDateString = sdt.toString();
+            var sdtobjDate = sdtobjDateString.slice(0, 10);
+            var sdtobjTime = sdtobjDateString.slice(11, 19);
+            var sdtobjDateFormated = new Date(sdtobjDate + "T" + sdtobjTime);
+
+
+            var edtobjDateString = edt.toString();
+            var edtobjDate = edtobjDateString.slice(0, 10);
+            var edtobjTime = edtobjDateString.slice(11, 19);
+            var edtobjDateFormated = new Date(edtobjDate + "T" + edtobjTime);
+            var objDateMinus = new Date(edtobjDate + "T" + edtobjTime);
+
+
+            objDateMinus.setDate(edtobjDateFormated.getDate() - 7);
+
+            if (sdtobjDateFormated < objDateMinus) {
+                createAlert('Please limit your date span within 7 days...', 'danger');
+            }
+
+            else {
+
+                if (sdtobjDateFormated >= edtobjDateFormated) {
+                    createAlert('Invalid Date Range. Please check.', 'danger');
+                }
+
+                else {
+
+                    var objectid = satvm.SelectedObject().objectId;
+                    var jsonObj = {
+                        ObjectId: objectid,
+                        StartDateTime: sdt,
+                        EndDateTime: edt
+                    }
+
+                    $('#history-loading-icon').show();
+
+                    historyAjax = $.ajax({
+                        url: _getHistoryObjectGPSInfo,
+                        type: 'post',
+                        data: jsonObj,
+                        contentType: 'application/json',
+                        headers: { 'content-type': 'application/x-www-form-urlencoded', 'accept': 'application/json', 'authorization': 'Bearer ' + token },
+                        success: function (rdt) {
+                            ko.mapping.fromJS(rdt, {}, satvm.ObjectGPSInfoHistory);
+                            if (satvm.ObjectGPSInfoHistory().length > 0) {
+
+                                createAlert('Playback history available. Please wait...', 'info');
+                           
+                                polylineList = [];
+
+
+                                var assetStatus;
+
+                                satvm.ObjectGPSInfoHistory().forEach(function (h, i) {
+                                    var latlng = new google.maps.LatLng(h.latitude(), h.longitude());
+
+                                    var minusone;
+                                    var hisLength = i;
+                                    var filteredLength = satvm.FilteredGPSHistory().length - 1;
+
+
+                                    if (hisLength <= 0) {
+                                        minusone = satvm.ObjectGPSInfoHistory()[hisLength];
+                                        polylineList.push(latlng);
+                                    } else {
+                                        minusone = satvm.ObjectGPSInfoHistory()[hisLength - 1];
+                                    }
+
+
+                                    if (minusone.longitude() != h.longitude() || minusone.latitude() != h.latitude()) {
+
+                                        satvm.FilteredGPSHistory.push(h);
+
+                                        polylineList.push(latlng);
+
+
+                                        assetStatus = getAssetStatus(h.speed(), h.status(), h.gpsTime(),'history');
+                                        var historyLineDots = {
+                                            path: google.maps.SymbolPath.CIRCLE,
+                                            scale: 3,
+                                            strokeColor: assetStatus.color
+                                        };
+
+                                        var historyDotMarker;
+                                        historyDotMarker = new MarkerWithLabel({
+                                            position: latlng,
+                                            icon: historyLineDots,
+                                            draggable: false,
+                                            map: map
+                                        });
+
+                                        historyDotMarkers.push(historyDotMarker);
+                                        historyDotMarker['speed'] = h.speed();
+                                        historyDotMarker['status'] = assetStatus.status;
+                                        historyDotMarker['gpstime'] = h.gpsTime();
+                                        historyDotMarker['color'] = assetStatus.color;
+                                        historyDotMarker['latlng'] = latlng;
+
+
+
+                                        google.maps.event.addListener(historyDotMarker, 'mouseover', function () {
+
+                                            if (historyMarker) {
+                                                historyMarker.setMap(null);
+                                    }
+
+                                            var labelCon = "<table><tr><td><i class='fa fa-circle' style='color:" + historyDotMarker.color + "'></i></td><td>&nbsp;" + historyDotMarker.status + "</td></tr>" +
+                                                              "<tr><td><i class='fa fa-clock-o'></i></td><td>&nbsp;" + historyDotMarker.gpstime + "</td></tr>" +
+                                                              "<tr><td><i class='fa fa-bolt'></i></td><td>&nbsp;" + historyDotMarker.speed + " kph</td></tr></table>";
+
+                                            historyMarker = new MarkerWithLabel({
+                                                icon: {
+                                    path: google.maps.SymbolPath.CIRCLE,
+                                    scale: 8,
+                                                    strokeColor: historyDotMarker.color
+                                                },
+                                                position: historyDotMarker.latlng,
+                                                rotate: 200,
+                                                draggable: false,
+                                                raiseOnDrag: true,
+                                                labelContent: labelCon,
+                                                labelAnchor: new google.maps.Point(50, 0),
+                                                labelClass: "label-map-history", // the CSS class for the label
+                                                labelStyle: { opacity: 0.75 }
+                                            });
+
+                                            historyMarker.setMap(map);
+                                        });
+
+                                    }
+
+
+                                });
+                                //var markerCluster = new MarkerClusterer(map, historyDotMarkers);
+                                lineSymbol = {
+                                    path: google.maps.SymbolPath.FORWARD_OPEN_ARROW,
+                                    scale: 5,
+                                    strokeColor: '#393'
+                                };
+
+
+
+                                historyLine = createPolyline(polylineList, lineSymbol);
+                                historyLine.setMap(map);
+                                animateHistoryIcon(historyLine);
+
+                                //isPaused = false;
+                                //polLen = polylineList.length;
+                                //animateCircle(historyLine, animCount, polLen);
+
+                                ////map.setCenter(polylineList[0]);
+                                //historyMarkers.forEach(function (h) { h.setMap(null) });
+
+                                selectedOverlay = historyLine;
+
+
+                                var latlngbounds = new google.maps.LatLngBounds();
+                                for (var i = 0; i < polylineList.length; i++) {
+                                    latlngbounds.extend(polylineList[i]);
+                                }
+                                map.fitBounds(latlngbounds);
+                                $('#history-loading-icon').hide();
+                            }
+                            else {
+
+                                createAlert('No playback history available.', 'danger');
+                            }
+
+                        },
+                        error: function (e) {
+                            if (e != null) {
+                                createAlert(decryptErrorMessage(e), 'danger');;
+                            }
+                            else {
+                                alert('Internal Server Error. Please contact your administrator.');
+                            }
+                        }
+                    });
+
+
+                }
+
+            }
+
+        }
+
+    </script>
+</body>
+</html>

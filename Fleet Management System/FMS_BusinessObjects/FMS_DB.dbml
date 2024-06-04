@@ -1,0 +1,589 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="FMS_3" Class="FMS_DBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=121.96.219.159;Initial Catalog=FMS_3;Persist Security Info=True;User ID=app_fms" SettingsObjectName="FMS_BusinessObjects.Properties.Settings" SettingsPropertyName="FMS_3ConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.refDRVLicense" Member="refDRVLicenses">
+    <Type Name="refDRVLicense">
+      <Column Name="drv_lic_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="license" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="expiry_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="refDRVLicense_tblDriver" Member="tblDrivers" ThisKey="drv_lic_id" OtherKey="drv_lic_id" Type="tblDriver" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refDRVViolation" Member="refDRVViolations">
+    <Type Name="refDRVViolation">
+      <Column Name="drv_vio_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="violation_ticket_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="vio_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="drv_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cost_type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="refViolation_refDRVViolation" Member="refViolation" ThisKey="vio_id" OtherKey="vio_id" Type="refViolation" IsForeignKey="true" />
+      <Association Name="tblDriver_refDRVViolation" Member="tblDriver" ThisKey="drv_id" OtherKey="drv_id" Type="tblDriver" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="tblVehicle_refDRVViolation" Member="tblVehicle" ThisKey="vid" OtherKey="vid" Type="tblVehicle" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refEMPStatus" Member="refEMPStatus">
+    <Type Name="refEMPStatus">
+      <Column Name="emp_sta_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="refEMPStatus_tblDriver" Member="tblDrivers" ThisKey="emp_sta_id" OtherKey="emp_sta_id" Type="tblDriver" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refEXPDeepType" Member="refEXPDeepTypes">
+    <Type Name="refEXPDeepType">
+      <Column Name="exp_deep_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="exp_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="deep_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="refEXPDeepType_tblExpense" Member="tblExpenses" ThisKey="exp_deep_type_id" OtherKey="deep_type_id" Type="tblExpense" />
+      <Association Name="refEXPType_refEXPDeepType" Member="refEXPType" ThisKey="exp_type_id" OtherKey="exp_type_id" Type="refEXPType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refEXPType" Member="refEXPTypes">
+    <Type Name="refEXPType">
+      <Column Name="exp_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="refEXPType_refEXPDeepType" Member="refEXPDeepTypes" ThisKey="exp_type_id" OtherKey="exp_type_id" Type="refEXPDeepType" />
+      <Association Name="refEXPType_tblExpense" Member="tblExpenses" ThisKey="exp_type_id" OtherKey="type" Type="tblExpense" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refFUNCPermission" Member="refFUNCPermissions">
+    <Type Name="refFUNCPermission">
+      <Column Name="func_per_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="func_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="permission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="refFUNCPermission_relMODPermission" Member="relMODPermissions" ThisKey="func_per_id" OtherKey="func_per_id" Type="relMODPermission" />
+      <Association Name="refFunction_refFUNCPermission" Member="refFunction" ThisKey="func_id" OtherKey="func_id" Type="refFunction" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refFunction" Member="refFunctions">
+    <Type Name="refFunction">
+      <Column Name="func_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="[function]" Member="function" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="refFunction_refFUNCPermission" Member="refFUNCPermissions" ThisKey="func_id" OtherKey="func_id" Type="refFUNCPermission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refINSPolicyType" Member="refINSPolicyTypes">
+    <Type Name="refINSPolicyType">
+      <Column Name="policy_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="policy_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="refINSPolicyType_refVHCInsurance" Member="refVHCInsurances" ThisKey="policy_type_id" OtherKey="policy_id" Type="refVHCInsurance" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refModule" Member="refModules">
+    <Type Name="refModule">
+      <Column Name="mod_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="module" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="refModule_relMODPermission" Member="relMODPermissions" ThisKey="mod_id" OtherKey="mod_id" Type="relMODPermission" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refPaymentMethod" Member="refPaymentMethods">
+    <Type Name="refPaymentMethod">
+      <Column Name="paymeth_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="method" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="refPaymentMethod_tblExpense" Member="tblExpenses" ThisKey="paymeth_id" OtherKey="paymeth_id" Type="tblExpense" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refSalary" Member="refSalaries">
+    <Type Name="refSalary">
+      <Column Name="sal_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="refSalary_tblDriver" Member="tblDrivers" ThisKey="sal_id" OtherKey="sal_id" Type="tblDriver" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refService" Member="refServices">
+    <Type Name="refService">
+      <Column Name="srv_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="service" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="service_type" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="refService_refVHCService" Member="refVHCServices" ThisKey="srv_id" OtherKey="srv_id" Type="refVHCService" />
+      <Association Name="tblUser_refService" Member="tblUser" ThisKey="usr_id" OtherKey="usr_id" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refVHCInsurance" Member="refVHCInsurances">
+    <Type Name="refVHCInsurance">
+      <Column Name="ins_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="expiry_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cert_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="company" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="policy_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sum_insured" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="takaful_contribution" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ncd" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ins_attch" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="insurance_company" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="registration_number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="issue_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="policy_type" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="payment" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="refVHCInsurance_tblVehicle" Member="tblVehicles" ThisKey="ins_id" OtherKey="ins_id" Type="tblVehicle" />
+      <Association Name="refINSPolicyType_refVHCInsurance" Member="refINSPolicyType" ThisKey="policy_id" OtherKey="policy_type_id" Type="refINSPolicyType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refVHCService" Member="refVHCServices">
+    <Type Name="refVHCService">
+      <Column Name="vhc_srv_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="service_receipt_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="date_started" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="date_completed" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="srv_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="brought_by" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="srv_by" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="vid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cost_type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="service_type" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="refService_refVHCService" Member="refService" ThisKey="srv_id" OtherKey="srv_id" Type="refService" IsForeignKey="true" />
+      <Association Name="tblDriver_refVHCService" Member="tblDriver" ThisKey="brought_by" OtherKey="drv_id" Type="tblDriver" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="tblVehicle_refVHCService" Member="tblVehicle" ThisKey="vid" OtherKey="vid" Type="tblVehicle" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refVHCType" Member="refVHCTypes">
+    <Type Name="refVHCType">
+      <Column Name="vhc_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="vhc_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.refViolation" Member="refViolations">
+    <Type Name="refViolation">
+      <Column Name="vio_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="violation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="refViolation_refDRVViolation" Member="refDRVViolations" ThisKey="vio_id" OtherKey="vio_id" Type="refDRVViolation" />
+      <Association Name="tblUser_refViolation" Member="tblUser" ThisKey="usr_id" OtherKey="usr_id" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.relMODPermission" Member="relMODPermissions">
+    <Type Name="relMODPermission">
+      <Column Name="mod_per_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="mod_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="func_per_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="role_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="refFUNCPermission_relMODPermission" Member="refFUNCPermission" ThisKey="func_per_id" OtherKey="func_per_id" Type="refFUNCPermission" IsForeignKey="true" />
+      <Association Name="refModule_relMODPermission" Member="refModule" ThisKey="mod_id" OtherKey="mod_id" Type="refModule" IsForeignKey="true" />
+      <Association Name="tblRole_relMODPermission" Member="tblRole" ThisKey="role_id" OtherKey="role_id" Type="tblRole" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.relVHCDriver" Member="relVHCDrivers">
+    <Type Name="relVHCDriver">
+      <Column Name="vhc_drv_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="vid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="drv_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblVehicle_relVHCDriver" Member="tblVehicle" ThisKey="vid" OtherKey="vid" Type="tblVehicle" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblChildUser" Member="tblChildUsers">
+    <Type Name="tblChildUser">
+      <Column Name="child_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="parent_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="role_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblRole_tblChildUser" Member="tblRole" ThisKey="role_id" OtherKey="role_id" Type="tblRole" IsForeignKey="true" />
+      <Association Name="tblUser_tblChildUser" Member="tblUser" ThisKey="parent_id" OtherKey="usr_id" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCompany" Member="tblCompanies">
+    <Type Name="tblCompany">
+      <Column Name="cmp_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="company" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="country_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblCompany_tblUser" Member="tblUsers" ThisKey="cmp_id" OtherKey="cmp_id" Type="tblUser" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblCountry" Member="tblCountries">
+    <Type Name="tblCountry">
+      <Column Name="country_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="country" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblDriver" Member="tblDrivers">
+    <Type Name="tblDriver">
+      <Column Name="drv_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="emp_id" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="first_name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="last_name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="birth_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="mobile_no" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="phone_no" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="home_address" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="gov_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="gov_id_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sal_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="salary" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="emp_sta_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="drv_lic_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="hire_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="flag" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="flag_reason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="tblDriver_refDRVViolation" Member="refDRVViolations" ThisKey="drv_id" OtherKey="drv_id" Type="refDRVViolation" />
+      <Association Name="tblDriver_refVHCService" Member="refVHCServices" ThisKey="drv_id" OtherKey="brought_by" Type="refVHCService" />
+      <Association Name="refDRVLicense_tblDriver" Member="refDRVLicense" ThisKey="drv_lic_id" OtherKey="drv_lic_id" Type="refDRVLicense" IsForeignKey="true" />
+      <Association Name="refEMPStatus_tblDriver" Member="refEMPStatus" ThisKey="emp_sta_id" OtherKey="emp_sta_id" Type="refEMPStatus" IsForeignKey="true" />
+      <Association Name="refSalary_tblDriver" Member="refSalary" ThisKey="sal_id" OtherKey="sal_id" Type="refSalary" IsForeignKey="true" />
+      <Association Name="tblUser_tblDriver" Member="tblUser" ThisKey="usr_id" OtherKey="usr_id" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblExpense" Member="tblExpenses">
+    <Type Name="tblExpense">
+      <Column Name="exp_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="ref_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vend_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="paymeth_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="deep_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="refEXPDeepType_tblExpense" Member="refEXPDeepType" ThisKey="deep_type_id" OtherKey="exp_deep_type_id" Type="refEXPDeepType" IsForeignKey="true" />
+      <Association Name="refPaymentMethod_tblExpense" Member="refPaymentMethod" ThisKey="paymeth_id" OtherKey="paymeth_id" Type="refPaymentMethod" IsForeignKey="true" />
+      <Association Name="refEXPType_tblExpense" Member="refEXPType" ThisKey="type" OtherKey="exp_type_id" Type="refEXPType" IsForeignKey="true" />
+      <Association Name="tblVendor_tblExpense" Member="tblVendor" ThisKey="vend_id" OtherKey="vend_id" Type="tblVendor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblGroupCode" Member="tblGroupCodes">
+    <Type Name="tblGroupCode">
+      <Column Name="group_code" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblUser_tblGroupCode" Member="tblUser" ThisKey="usr_id" OtherKey="usr_id" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblRole" Member="tblRoles">
+    <Type Name="tblRole">
+      <Column Name="role_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="role" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblRole_relMODPermission" Member="relMODPermissions" ThisKey="role_id" OtherKey="role_id" Type="relMODPermission" />
+      <Association Name="tblRole_tblChildUser" Member="tblChildUsers" ThisKey="role_id" OtherKey="role_id" Type="tblChildUser" />
+      <Association Name="tblUser_tblRole" Member="tblUser" ThisKey="user_id" OtherKey="usr_id" Type="tblUser" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblUser" Member="tblUsers">
+    <Type Name="tblUser">
+      <Column Name="usr_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="username" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="cmp_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="date_registered" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblUser_refService" Member="refServices" ThisKey="usr_id" OtherKey="usr_id" Type="refService" />
+      <Association Name="tblUser_refViolation" Member="refViolations" ThisKey="usr_id" OtherKey="usr_id" Type="refViolation" />
+      <Association Name="tblUser_tblChildUser" Member="tblChildUsers" ThisKey="usr_id" OtherKey="parent_id" Type="tblChildUser" />
+      <Association Name="tblUser_tblDriver" Member="tblDrivers" ThisKey="usr_id" OtherKey="usr_id" Type="tblDriver" />
+      <Association Name="tblUser_tblGroupCode" Member="tblGroupCodes" ThisKey="usr_id" OtherKey="usr_id" Type="tblGroupCode" />
+      <Association Name="tblUser_tblRole" Member="tblRoles" ThisKey="usr_id" OtherKey="user_id" Type="tblRole" />
+      <Association Name="tblCompany_tblUser" Member="tblCompany" ThisKey="cmp_id" OtherKey="cmp_id" Type="tblCompany" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVehicle" Member="tblVehicles">
+    <Type Name="tblVehicle">
+      <Column Name="vid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="vehicle_name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="vhc_model" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="body_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="color" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="cc" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="manufacturer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="engine_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="chasis_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="year_make" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="chasis_wt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="body_wt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gross_wt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="registration_expiry_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="registration_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="seating_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="bluecard" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ins_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="road_tax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="group_code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="flag" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="flag_reason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="tblVehicle_refDRVViolation" Member="refDRVViolations" ThisKey="vid" OtherKey="vid" Type="refDRVViolation" />
+      <Association Name="tblVehicle_refVHCService" Member="refVHCServices" ThisKey="vid" OtherKey="vid" Type="refVHCService" />
+      <Association Name="tblVehicle_relVHCDriver" Member="relVHCDrivers" ThisKey="vid" OtherKey="vid" Type="relVHCDriver" />
+      <Association Name="refVHCInsurance_tblVehicle" Member="refVHCInsurance" ThisKey="ins_id" OtherKey="ins_id" Type="refVHCInsurance" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_vehicle_service" Member="vw_vehicle_services">
+    <Type Name="vw_vehicle_service">
+      <Column Name="service" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="date_started" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="date_completed" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="srv_by" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="vehicle_name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="service_receipt_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="brought_by" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="driver" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="cost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="vid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="srv_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="vhc_srv_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="exp_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vendor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_db_expense" Member="vw_db_expenses">
+    <Type Name="vw_db_expense">
+      <Column Name="day" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="cost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_db_expiry_flags" Member="vw_db_expiry_flags">
+    <Type Name="vw_db_expiry_flag">
+      <Column Name="alert_type" Type="System.String" DbType="VarChar(19) NOT NULL" CanBeNull="false" />
+      <Column Name="item" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ref_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="deadline" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="days_remaining" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="group_code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_db_service_count" Member="vw_db_service_counts">
+    <Type Name="vw_db_service_count">
+      <Column Name="vehicle_name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="srv_count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_db_violation_count" Member="vw_db_violation_counts">
+    <Type Name="vw_db_violation_count">
+      <Column Name="driver" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="violation_count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="drv_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_driver_details" Member="vw_driver_details">
+    <Type Name="vw_driver_detail">
+      <Column Name="emp_id" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="first_name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="last_name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="mobile_no" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="home_address" Type="System.String" DbType="NVarChar(150)" CanBeNull="true" />
+      <Column Name="gov_id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="gov_id_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="emp_status" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="emp_description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="license_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="license_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="license_expiry_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="license_description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="salary_type" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="salary_description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="drv_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="sal_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="emp_sta_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="drv_lic_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="flag" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="phone_no" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="birth_date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="salary" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="hire_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="expense" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_driver_name" Member="vw_driver_names">
+    <Type Name="vw_driver_name">
+      <Column Name="name" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="drv_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_driver_preview" Member="vw_driver_previews">
+    <Type Name="vw_driver_preview">
+      <Column Name="driver" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="license" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="emp_id" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="drv_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_driver_violation" Member="vw_driver_violations">
+    <Type Name="vw_driver_violation">
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="violation" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="location" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="driver" Type="System.String" DbType="VarChar(101)" CanBeNull="true" />
+      <Column Name="vehicle_name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="violation_ticket_no" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="cost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="vid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="drv_vio_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="vio_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="drv_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="exp_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_item_flag" Member="vw_item_flags">
+    <Type Name="vw_item_flag">
+      <Column Name="type" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(101)" CanBeNull="true" />
+      <Column Name="flag" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="flag_reason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_module_role" Member="vw_module_roles">
+    <Type Name="vw_module_role">
+      <Column Name="module" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="mod_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="role_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_perm_function" Member="vw_perm_functions">
+    <Type Name="vw_perm_function">
+      <Column Name="module" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="[function]" Member="function" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="permission" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="role" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="mod_per_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="func_per_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="func_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="mod_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="role_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_user_expense" Member="vw_user_expenses">
+    <Type Name="vw_user_expense">
+      <Column Name="cost" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="deep_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="vendor" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="method" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="exp_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ref_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vend_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="paymeth_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="deep_type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="item" Type="System.String" DbType="NVarChar(101)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_user_ref_table" Member="vw_user_ref_tables">
+    <Type Name="vw_user_ref_table">
+      <Column Name="ref_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="reference" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="[reference name]" Member="reference_name" Type="System.String" DbType="NVarChar(101)" CanBeNull="true" />
+      <Column Name="type_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_user_vehicle" Member="vw_user_vehicles">
+    <Type Name="vw_user_vehicle">
+      <Column Name="vehicle_name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="group_code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_vehicle_details" Member="vw_vehicle_details">
+    <Type Name="vw_vehicle_detail">
+      <Column Name="vid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="vehicle_name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="vhc_model" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="body_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="color" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="cc" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="manufacturer" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="engine_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="chasis_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="year_make" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="registration_expiry_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="registration_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="seating_no" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="remarks" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="bluecard" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ins_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="road_tax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="group_code" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="image" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="flag" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="flag_reason" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="expense" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="gross_wt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="body_wt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="chasis_wt" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vw_vehicle_insurance" Member="vw_vehicle_insurances">
+    <Type Name="vw_vehicle_insurance">
+      <Column Name="ins_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="vid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vehicle_name" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="insurance_company" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="cert_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="issue_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="expiry_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="policy_type_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="policy_type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sum_insured" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="takaful_contribution" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ncd" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="usr_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="expense" Type="System.Double" DbType="Float" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblVendor" Member="tblVendors">
+    <Type Name="tblVendor">
+      <Column Name="vend_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="vendor" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="address" Type="System.String" DbType="VarChar(150)" CanBeNull="true" />
+      <Column Name="contact" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="contact_phone" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="contact_email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="tin_no" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="website" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flag" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="flag_reason" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="tblVendor_tblExpense" Member="tblExpenses" ThisKey="vend_id" OtherKey="vend_id" Type="tblExpense" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,292 @@
+﻿html, body {
+    height: 100%;
+    font: 12px "Segoe UI";
+}
+
+body {
+    width: 100%;
+    padding: 0 0 180px 0;
+}
+
+
+
+.navmenu {
+    padding-top: 50px;
+}
+
+.navbar {
+    display: block;
+    text-align: center;
+}
+
+.navbar-brand {
+    display: inline-block;
+    float: none;
+}
+
+.navbar-toggle {
+    position: absolute;
+    float: left;
+    margin-left: 15px;
+}
+
+#map-canvas {
+    background: red;
+    display: block;
+    width: 100%;
+    right: 0px;
+    height: 100%;
+}
+
+.container-map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    margin: 0px;
+    right: 0px;
+    padding: 50px 0 180px 0;
+}
+
+.container {
+    max-width: 100%;
+}
+
+@media (min-width: 1px) {
+    .navbar-toggle {
+        display: block !important;
+    }
+}
+
+.summary-detail {
+    margin: 0px !important;
+    position: fixed;
+    height: 190px;
+    bottom: 0px;
+    width: 100%;
+    /*background-color: red;*/
+    padding-left: 20px;
+    right: 0px;
+}
+
+.info-detail-container {
+    min-width: 300px;
+    width: 100%;
+    margin: 0px !important;
+    position: absolute;
+}
+
+.tab-detail-container {
+    width: 100%;
+    /*background-color: green;*/
+    margin: 0px !important;
+}
+
+@media (min-width: 992px) {
+    body {
+        padding: 0 0 180px 250px;
+        overflow-x: hidden;
+        /*margin-bottom:220px;*/
+    }
+
+    .summary-detail {
+        margin: 0px !important;
+        padding-left: 270px;
+        width: 100%;
+    }
+
+    .info-detail-container {
+        min-width: 300px;
+        width: 100%;
+        margin: 0px !important;
+    }
+
+    .tab-detail-container {
+        width: 100%;
+        margin: 0px !important;
+    }
+
+    .container-map {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        margin: 0px;
+        padding: 0px;
+        padding-left: 250px;
+        padding-bottom: 180px;
+    }
+
+    .navmenu {
+        padding-top: 0;
+    }
+
+    .navbar {
+        display: none !important; /* IE8 fix */
+    }
+}
+
+.tree-list {
+    border: none;
+    display: table;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    background-color: white;
+}
+
+    .tree-list > ul {
+        padding: 0 0 0 12px;
+        margin: 0px;
+    }
+
+.navmenu-brand-custom {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
+}
+
+#color-palette {
+    margin: 0 auto 0 auto !important;
+    width: 100%;
+}
+
+.color-button {
+    width: 14px;
+    height: 14px;
+    font-size: 0;
+    margin: 2px;
+    float: left;
+    cursor: pointer;
+}
+
+.geoFence-list {
+    padding: 0 14px;
+}
+
+.labels {
+    color: white;
+    background-color: red;
+    font-family: "Lucida Grande", "Arial", sans-serif;
+    font-size: 10px;
+    text-align: center;
+    width: 10px;
+    white-space: nowrap;
+}
+
+.divider-space {
+    margin-top: 5px !important;
+    padding-top: 5px !important;
+    display: block;
+}
+
+.btn-objectlist {
+    background-color: #0d3078;
+    color: #ffffff;
+}
+
+.label-map {
+    color: white;
+    background-color: #0d3078;
+    border-radius: 25px;
+    font-size: 10px;
+    text-align: center;
+    width: 100px;
+    white-space: nowrap;
+}
+
+.label-map-date {
+    color: white;
+    background-color: #e5350e;
+    border-radius: 25px;
+    font-size: 10px;
+    text-align: center;
+    width: 100px;
+    white-space: nowrap;
+    z-index:990;
+}
+
+
+
+
+.detail-label-title {
+    width: 160px;
+}
+
+.detail-label-value {
+    /*width: 160px;*/
+}
+
+.detail-label-value-id {
+    color: #0d3078;
+    font-size: 20px;
+    text-align: center;
+}
+
+.detail-label-value-name {
+    background-color: #0d3078;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: left;
+    padding: 15px;
+}
+
+
+.tab-content {
+    padding-top: 12px;
+    width: 100%;
+    height: 150px;
+    overflow-y: scroll;
+    z-index: 10;
+}
+
+
+.history-controls {
+    width: 99%;
+    position: static;
+}
+
+.dtp, .bootstrap-datetimepicker-widget {
+    z-index: 9999 !important;
+    position: fixed;
+}
+
+
+
+.active-object {
+    background-color: #455cc8;
+    color: #ffffff;
+}
+
+.clickable-object:hover {
+    background-color: #455cc8;
+}
+
+.link-no-outline {
+    outline: none !important;
+    text-decoration: none !important;
+}
+/*.tab-detail {
+    height: 190px !important;
+    bottom: 0px;
+    position: fixed;
+    width: 100%;
+    margin-left:15%;
+
+}
+
+.tab-content {
+    height: 70% !important;
+    width: 85%;
+}
+
+.info-detail-container {
+    max-width: 15%;
+    width:100%;
+    height: 100%;
+    position: fixed;
+    left: 250px;
+}
+
+.info-detail {
+    padding:20px;
+    width:100%;
+}*/

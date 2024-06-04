@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{51FC585E-C50E-4985-9031-0DE4167E2791}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FMS</RootNamespace>
+    <AssemblyName>FMS</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Linq.Dynamic, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Telerik.Web.Design, Version=2012.3.1205.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for ASP.NET AJAX Q3 2012\Bin35\Telerik.Web.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2012.3.1205.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for ASP.NET AJAX Q3 2012\Bin35\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2012.3.1205.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\RadControls for ASP.NET AJAX Q3 2012\Bin35\Telerik.Web.UI.Skins.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\FMS.dll" />
+    <Content Include="bin\FMS.pdb" />
+    <Content Include="bin\FMS.vshost.exe" />
+    <Content Include="bin\FMS_BusinessObjects.dll" />
+    <Content Include="bin\FMS_BusinessObjects.pdb" />
+    <Content Include="bin\Telerik.Web.Design.dll" />
+    <Content Include="bin\Telerik.Web.UI.dll" />
+    <Content Include="bin\Telerik.Web.UI.Skins.dll" />
+    <Content Include="Design\css\menu.css" />
+    <Content Include="Design\css\new_menu.css" />
+    <Content Include="Design\driver_pg_images\drv_unavailable.png" />
+    <Content Include="Design\export_images\Acrobat 48.png" />
+    <Content Include="Design\export_images\Excel 48.png" />
+    <Content Include="Design\flagging_images\drv.png" />
+    <Content Include="Design\flagging_images\flagged.png" />
+    <Content Include="Design\flagging_images\unflagged.png" />
+    <Content Include="Design\flagging_images\vhc.png" />
+    <Content Include="Design\icon_images\add.png" />
+    <Content Include="Design\icon_images\delete.png" />
+    <Content Include="Design\icon_images\edit.png" />
+    <Content Include="Design\icon_images\logout.png" />
+    <Content Include="Design\icon_images\mail.png" />
+    <Content Include="Design\icon_images\phone.png" />
+    <Content Include="Design\login_images\Fleet_Expense_logo.png" />
+    <Content Include="Design\login_images\Fleet_Expense_logo_master.png" />
+    <Content Include="Design\login_images\FMS_logo.png" />
+    <Content Include="Design\login_images\FMS_logo_masterpg.png" />
+    <Content Include="Design\login_images\FMS_new_logo.png" />
+    <Content Include="Design\login_images\FMS_new_logo_masterpg.png" />
+    <Content Include="Design\login_images\gpsmap_bru.jpg" />
+    <Content Include="Design\login_images\Warning.png" />
+    <Content Include="Design\login_images\WarningHeader.png" />
+    <Content Include="Design\menu_images\accounts.png" />
+    <Content Include="Design\menu_images\alert.png" />
+    <Content Include="Design\login_images\BRUFMS.png" />
+    <Content Include="Design\menu_images\car-insurance.gif" />
+    <Content Include="Design\menu_images\charts.png" />
+    <Content Include="Design\menu_images\dashboard.gif" />
+    <Content Include="Design\menu_images\driver.gif" />
+    <Content Include="Design\menu_images\driver.png" />
+    <Content Include="Design\menu_images\driver_2.png" />
+    <Content Include="Design\menu_images\expense.png" />
+    <Content Include="Design\menu_images\header.png" />
+    <Content Include="Design\menu_images\new\accounts.png" />
+    <Content Include="Design\menu_images\new\drivers.png" />
+    <Content Include="Design\menu_images\new\driversmaster.png" />
+    <Content Include="Design\menu_images\new\expensereports.png" />
+    <Content Include="Design\menu_images\new\expenses.png" />
+    <Content Include="Design\menu_images\new\income.png" />
+    <Content Include="Design\menu_images\new\insurance.png" />
+    <Content Include="Design\menu_images\new\insurancemaster.png" />
+    <Content Include="Design\menu_images\new\reports.png" />
+    <Content Include="Design\menu_images\new\roles.png" />
+    <Content Include="Design\menu_images\new\services.png" />
+    <Content Include="Design\menu_images\new\servicesmaster.png" />
+    <Content Include="Design\menu_images\new\vehicles.png" />
+    <Content Include="Design\menu_images\new\vehiclesmaster.png" />
+    <Content Include="Design\menu_images\new\vendors.png" />
+    <Content Include="Design\menu_images\new\violations.png" />
+    <Content Include="Design\menu_images\new\violationsmaster.png" />
+    <Content Include="Design\menu_images\roles.png" />
+    <Content Include="Design\menu_images\services.png" />
+    <Content Include="Design\menu_images\truck_2.png" />
+    <Content Include="Design\vehicle_pg_images\VHC_unavailable.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <Content Include="Source\Admin\Alerts_Master.aspx" />
+    <Content Include="Source\Admin\Drivers_Master.aspx" />
+    <Content Include="Source\Admin\Expenses_Master.aspx" />
+    <Content Include="Source\Admin\Services_Master.aspx" />
+    <Content Include="Source\Admin\User_Roles.aspx" />
+    <Content Include="Source\Admin\Vehicles_Master.aspx" />
+    <Content Include="Source\Admin\Vendors_Panel.aspx" />
+    <Content Include="Source\Child\Dashboard.aspx" />
+    <Content Include="Source\Child\Drivers.aspx" />
+    <Content Include="Source\Child\Error_Page.aspx" />
+    <Content Include="Source\Admin\Services_Panel.aspx" />
+    <Content Include="Source\Admin\User_Access.aspx" />
+    <Content Include="Source\Admin\Insurance_Master.aspx" />
+    <Content Include="Source\Child\Vehicles.aspx" />
+    <Content Include="Design\css\font-awesome.css" />
+    <Content Include="Design\css\login-box.css" />
+    <Content Include="Design\login_images\bg.jpg" />
+    <Content Include="Design\login_images\bg_red.jpg" />
+    <Content Include="Design\login_images\Exclamation.gif" />
+    <Content Include="Design\login_images\favicon.ico" />
+    <Content Include="Design\login_images\gpsmap.png" />
+    <Content Include="Design\login_images\li_pin.png" />
+    <Content Include="Design\login_images\login-box-backg.png" />
+    <Content Include="Design\login_images\login-btn.png" />
+    <Content Include="Design\login_images\PHILGPS_Logo_login.png" />
+    <Content Include="Design\login_images\Warning.gif" />
+    <Content Include="Design\login_images\WarningHeader.gif" />
+    <Content Include="Fonts\fontawesome-webfont.svg" />
+    <Content Include="Design\menu_images\bg.png" />
+    <Content Include="Design\menu_images\bluepad.png" />
+    <Content Include="Design\menu_images\insurance.png" />
+    <Content Include="Design\menu_images\map.png" />
+    <Content Include="Design\menu_images\philgps.png" />
+    <Content Include="Design\menu_images\print.png" />
+    <Content Include="Design\menu_images\record.png" />
+    <Content Include="Design\menu_images\tools.png" />
+    <Content Include="Design\menu_images\truckyellow.png" />
+    <Content Include="Design\menu_images\violation.png" />
+    <Content Include="JS\custom.js" />
+    <Content Include="JS\jquery.js" />
+    <Content Include="Login.aspx" />
+    <Content Include="Source\Admin\Violations_Master.aspx" />
+    <Content Include="Source\Admin\Violations_Panel.aspx" />
+    <Content Include="Source\Details\DETExpenseSummary.aspx" />
+    <Content Include="Source\Details\DETFlag.aspx" />
+    <Content Include="Source\Details\DETInsurance.aspx" />
+    <Content Include="Source\Details\DETExpense.aspx" />
+    <Content Include="Source\Details\DETVehicle.aspx" />
+    <Content Include="Source\Details\DETDriver.aspx" />
+    <Content Include="Source\Details\DETService.aspx" />
+    <Content Include="Source\Details\DETTracking.aspx" />
+    <Content Include="Source\Details\DETViolation.aspx" />
+    <Content Include="Source\Details\DETViolationList.aspx" />
+    <Content Include="Source\User_Control\UC_Services.ascx" />
+    <Content Include="Source\User_Control\UC_Vehicle.ascx" />
+    <Content Include="Styles\Site.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.4.1.js" />
+    <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="System.Linq.Dynamic.dll" />
+    <Content Include="TestForMenubar.aspx" />
+    <Content Include="Web References\FMS_Helper\FMS_Helper.disco" />
+    <None Include="Web References\FMS_Helper_PH\FMS_Helper.disco" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Default.aspx" />
+    <Content Include="Web References\FMS_Helper\FMS_Helper.wsdl" />
+    <Content Include="Web References\FMS_Helper\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\FMS_Helper_PH\FMS_Helper.wsdl" />
+    <None Include="Web References\FMS_Helper_PH\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Alerts_Master.aspx.cs">
+      <DependentUpon>Alerts_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Alerts_Master.aspx.designer.cs">
+      <DependentUpon>Alerts_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Drivers_Master.aspx.cs">
+      <DependentUpon>Drivers_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Drivers_Master.aspx.designer.cs">
+      <DependentUpon>Drivers_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Expenses_Master.aspx.cs">
+      <DependentUpon>Expenses_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Expenses_Master.aspx.designer.cs">
+      <DependentUpon>Expenses_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Services_Master.aspx.cs">
+      <DependentUpon>Services_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Services_Master.aspx.designer.cs">
+      <DependentUpon>Services_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\User_Roles.aspx.cs">
+      <DependentUpon>User_Roles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\User_Roles.aspx.designer.cs">
+      <DependentUpon>User_Roles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Vehicles_Master.aspx.cs">
+      <DependentUpon>Vehicles_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Vehicles_Master.aspx.designer.cs">
+      <DependentUpon>Vehicles_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Vendors_Panel.aspx.cs">
+      <DependentUpon>Vendors_Panel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Vendors_Panel.aspx.designer.cs">
+      <DependentUpon>Vendors_Panel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Child\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Child\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Child\Drivers.aspx.cs">
+      <DependentUpon>Drivers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Child\Drivers.aspx.designer.cs">
+      <DependentUpon>Drivers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Child\Error_Page.aspx.cs">
+      <DependentUpon>Error_Page.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Child\Error_Page.aspx.designer.cs">
+      <DependentUpon>Error_Page.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Services_Panel.aspx.cs">
+      <DependentUpon>Services_Panel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Services_Panel.aspx.designer.cs">
+      <DependentUpon>Services_Panel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\User_Access.aspx.cs">
+      <DependentUpon>User_Access.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\User_Access.aspx.designer.cs">
+      <DependentUpon>User_Access.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Insurance_Master.aspx.cs">
+      <DependentUpon>Insurance_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Insurance_Master.aspx.designer.cs">
+      <DependentUpon>Insurance_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Child\VehicleImageHandler.ashx.cs">
+      <DependentUpon>VehicleImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Child\Vehicles.aspx.cs">
+      <DependentUpon>Vehicles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Child\Vehicles.aspx.designer.cs">
+      <DependentUpon>Vehicles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Violations_Master.aspx.cs">
+      <DependentUpon>Violations_Master.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Violations_Master.aspx.designer.cs">
+      <DependentUpon>Violations_Master.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Admin\Violations_Panel.aspx.cs">
+      <DependentUpon>Violations_Panel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Admin\Violations_Panel.aspx.designer.cs">
+      <DependentUpon>Violations_Panel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Classes\Driver.cs" />
+    <Compile Include="Source\Classes\Expense.cs" />
+    <Compile Include="Source\Classes\Flagging.cs" />
+    <Compile Include="Source\Classes\Insurance.cs" />
+    <Compile Include="Source\Classes\Others.cs" />
+    <Compile Include="Source\Classes\Permission.cs" />
+    <Compile Include="Source\Classes\Service.cs" />
+    <Compile Include="Source\Classes\User.cs" />
+    <Compile Include="Source\Classes\Vehicle.cs" />
+    <Compile Include="Source\Classes\Violation.cs" />
+    <Compile Include="Source\Details\DETExpenseSummary.aspx.cs">
+      <DependentUpon>DETExpenseSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETExpenseSummary.aspx.designer.cs">
+      <DependentUpon>DETExpenseSummary.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETFlag.aspx.cs">
+      <DependentUpon>DETFlag.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETFlag.aspx.designer.cs">
+      <DependentUpon>DETFlag.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETInsurance.aspx.cs">
+      <DependentUpon>DETInsurance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETInsurance.aspx.designer.cs">
+      <DependentUpon>DETInsurance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETExpense.aspx.cs">
+      <DependentUpon>DETExpense.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETExpense.aspx.designer.cs">
+      <DependentUpon>DETExpense.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETVehicle.aspx.cs">
+      <DependentUpon>DETVehicle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETVehicle.aspx.designer.cs">
+      <DependentUpon>DETVehicle.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETDriver.aspx.cs">
+      <DependentUpon>DETDriver.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETDriver.aspx.designer.cs">
+      <DependentUpon>DETDriver.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETService.aspx.cs">
+      <DependentUpon>DETService.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETService.aspx.designer.cs">
+      <DependentUpon>DETService.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETTracking.aspx.cs">
+      <DependentUpon>DETTracking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETTracking.aspx.designer.cs">
+      <DependentUpon>DETTracking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETViolation.aspx.cs">
+      <DependentUpon>DETViolation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETViolation.aspx.designer.cs">
+      <DependentUpon>DETViolation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\DETViolationList.aspx.cs">
+      <DependentUpon>DETViolationList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\Details\DETViolationList.aspx.designer.cs">
+      <DependentUpon>DETViolationList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\Details\ImageHandler.ashx.cs">
+      <DependentUpon>ImageHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\User_Control\UC_Services.ascx.cs">
+      <DependentUpon>UC_Services.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\User_Control\UC_Services.ascx.designer.cs">
+      <DependentUpon>UC_Services.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Source\User_Control\UC_Vehicle.ascx.cs">
+      <DependentUpon>UC_Vehicle.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Source\User_Control\UC_Vehicle.ascx.designer.cs">
+      <DependentUpon>UC_Vehicle.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="TestForMenubar.aspx.cs">
+      <DependentUpon>TestForMenubar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TestForMenubar.aspx.designer.cs">
+      <DependentUpon>TestForMenubar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\FMS_Helper\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\FMS_Helper_PH\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Web References\App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Fonts\fontawesome-webfont.eot" />
+    <None Include="Fonts\fontawesome-webfont.ttf" />
+    <None Include="Fonts\fontawesome-webfont.woff" />
+    <None Include="Fonts\FontAwesome.otf" />
+    <Content Include="packages.config" />
+    <Content Include="Source\Child\VehicleImageHandler.ashx" />
+    <Content Include="Source\Details\ImageHandler.ashx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://119.160.132.105:801/ws_fms/">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\FMS_Helper\</RelPath>
+      <UpdateFromURL>http://119.160.132.105:801/ws_fms/</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>FMS_FMS_Helper_FMS_Helper</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://121.96.219.159:802/WS_FMS_Helper/FMS_Helper.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\FMS_Helper_PH\</RelPath>
+      <UpdateFromURL>http://121.96.219.159:802/WS_FMS_Helper/FMS_Helper.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>FMS_FMS_Helper_PH_FMS_Helper</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FMS_BusinessObjects\FMS_BusinessObjects.csproj">
+      <Project>{e77d5048-55f0-46b1-9097-c63242079b4f}</Project>
+      <Name>FMS_BusinessObjects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Source\Child\Report1.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55218</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

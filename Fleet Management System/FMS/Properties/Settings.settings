@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FMS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="FMS_FMS_Helper_FMS_Helper" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://119.160.132.105:801/ws_fms/FMS_Helper.asmx</Value>
+    </Setting>
+    <Setting Name="FMS_FMS_Helper_PH_FMS_Helper" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://121.96.219.159:802/WS_FMS_Helper/FMS_Helper.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

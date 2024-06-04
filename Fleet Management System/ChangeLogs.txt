@@ -1,0 +1,18 @@
+v. 6-10-2014 (Ian Vinoya)
+- Added export function for:
+	Vehicles.aspx
+	Services.aspx
+	Drivers.aspx
+	Violations.aspx
+- Added designer for export function under region Export Function and function RadGrid1_OnItemCommand
+	Vehicles.aspx.cs
+	Services.aspx.cs
+	Drivers.aspx.cs
+	Violations.aspx.cs
+- Added export_images folder under design/ with images (Acrobat 48.png and Excel 48.png)
+- Added images for menu_images and login_images (BRUFMS.png and BRUFMS.png) *these are different images
+- Added icon images for menu_images (accounts.png, alerts.png, chart.png, and driver.png)
+- Modified login-box.css and menu.css under design/css/
+- Modified the login page to use the new logo and remove white space
+- Modified Site.Master to make menu bar css function as intended and changed the overall layout
+- Added PasswordRecovery.aspx

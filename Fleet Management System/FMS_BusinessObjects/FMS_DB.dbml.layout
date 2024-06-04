@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 23, 28.875" name="FMS_DB">
+  <DataContextMoniker Name="/FMS_DBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6884156b-bd50-480b-bda0-b338fa54061a" absoluteBounds="6.5, 17.625, 2, 1.5891951497395809">
+      <DataClassMoniker Name="/FMS_DBDataContext/refDRVLicense" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0fca6a79-030e-4149-a849-b5f08df2ae62" absoluteBounds="6.515, 18.085, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="928d1d9a-8875-43f6-acd0-8a632ddc3c8b" absoluteBounds="9, 7.75, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/FMS_DBDataContext/refDRVViolation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a24f1699-4151-4ca6-8c4f-78cc08b15da0" absoluteBounds="9.015, 8.21, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4614fcb6-81b1-426d-8448-c93b36eac31e" absoluteBounds="6.5, 1.375, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/refEMPStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d21ce883-75af-4f5e-80ff-a026fa2e3b55" absoluteBounds="6.515, 1.835, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="66901a1c-4174-45f1-82dd-9c6d8ff1fde2" absoluteBounds="14.5, 1.625, 2, 1.2605004882812503">
+      <DataClassMoniker Name="/FMS_DBDataContext/refEXPDeepType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6963f06f-6bb6-47b5-bbe7-79e402c123ae" absoluteBounds="14.515, 2.085, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fe8dbec6-960e-4611-b866-1be215621efc" absoluteBounds="11.75, 1.625, 2, 1.2605004882812503">
+      <DataClassMoniker Name="/FMS_DBDataContext/refEXPType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="95114a06-80a9-4b0a-9d5a-dde7da795268" absoluteBounds="11.765, 2.085, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bf28c5a2-908a-4db1-94ee-03cea3a20c7c" absoluteBounds="6.25, 27.375, 2, 1.2605004882812523">
+      <DataClassMoniker Name="/FMS_DBDataContext/refFUNCPermission" />
+      <nestedChildShapes>
+        <elementListCompartment Id="504a00ec-0455-429a-b164-74e088bf646a" absoluteBounds="6.265, 27.835, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8581aa83-4fb9-4385-b464-d2ad18feb3ff" absoluteBounds="3.5, 27.5, 2, 1.0961531575520809">
+      <DataClassMoniker Name="/FMS_DBDataContext/refFunction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6e4040ed-0b12-4d50-aae4-2f18d52995d5" absoluteBounds="3.515, 27.96, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0bcaa741-ac64-4936-b069-f02d02345109" absoluteBounds="0.75, 22.25, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/refINSPolicyType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ca811660-9ba7-49c0-be8d-57cb74613b20" absoluteBounds="0.765, 22.71, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e54719f6-6f12-4900-b9a5-c77df0f25790" absoluteBounds="6.25, 15.625, 2, 1.0961531575520827">
+      <DataClassMoniker Name="/FMS_DBDataContext/refModule" />
+      <nestedChildShapes>
+        <elementListCompartment Id="80fb9074-cad6-43d9-abed-79c9903a5a34" absoluteBounds="6.265, 16.085, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2ddf740f-c9b5-4c44-8c2d-31a50d5ed313" absoluteBounds="14.5, 4.125, 2, 1.0961531575520844">
+      <DataClassMoniker Name="/FMS_DBDataContext/refPaymentMethod" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6535510d-d4b1-4369-88d9-1f7b04780c46" absoluteBounds="14.515, 4.585, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="aabe7fa0-00dd-4dad-bde9-9154a7edf77f" absoluteBounds="6.5, 3.5, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/refSalary" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5db63acc-767d-4b7f-a12e-aaa20d12cd84" absoluteBounds="6.515, 3.96, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f721b7c6-3e01-48b3-b0c2-eb9435611a09" absoluteBounds="6.25, 12.625, 2, 1.5891951497395844">
+      <DataClassMoniker Name="/FMS_DBDataContext/refService" />
+      <nestedChildShapes>
+        <elementListCompartment Id="73a45acb-008a-409c-9038-4e00b033dc5c" absoluteBounds="6.265, 13.085, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1f56503d-7931-4255-b44c-18bae14554e0" absoluteBounds="3.5, 21.375, 2, 3.2326684570312523">
+      <DataClassMoniker Name="/FMS_DBDataContext/refVHCInsurance" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0509d027-78fb-41b6-9311-17187175929e" absoluteBounds="3.515, 21.835, 1.9700000000000002, 2.67266845703125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="09266ac1-b2ff-4535-9a48-946bde25cc49" absoluteBounds="9, 14, 2, 2.7396264648437487">
+      <DataClassMoniker Name="/FMS_DBDataContext/refVHCService" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9ab35ca0-e0bb-46e9-b224-12aff560b841" absoluteBounds="9.015, 14.46, 1.9700000000000002, 2.17962646484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="eabdb275-339e-4294-b7e5-56d467cdbed6" absoluteBounds="0.75, 0.75, 2, 1.26050048828125">
+      <DataClassMoniker Name="/FMS_DBDataContext/refVHCType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d15a3ddc-7521-4e0b-954d-7e737f4f5f42" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c02ea8b3-28b5-4a5a-806f-8bfab9aa9b10" absoluteBounds="6.25, 8.25, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/refViolation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="68e15e4f-5c02-42a7-b950-44bf0e44cf98" absoluteBounds="6.265, 8.71, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1247b252-34a6-4e4a-a3d8-5fbb59b51e86" absoluteBounds="9, 11.375, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/relMODPermission" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eeaf001a-15f3-4072-817e-ccf25957de25" absoluteBounds="9.015, 11.835, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f6053d19-6e2a-4dd5-8be7-72fa653f9e5c" absoluteBounds="9, 22.25, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/relVHCDriver" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6da8b089-f30f-4027-bb6f-7177e41b8d24" absoluteBounds="9.015, 22.71, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f9ef5010-a2b3-4954-a40a-34c9e6124875" absoluteBounds="12, 9.75, 2, 1.7535424804687487">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblChildUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6413cd64-37ce-4b8b-887f-30a9bf485a56" absoluteBounds="12.015, 10.21, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4829e2f4-c89c-425f-a3a3-6139acb5aef2" absoluteBounds="0.75, 9.625, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblCompany" />
+      <nestedChildShapes>
+        <elementListCompartment Id="02283690-c00f-4c92-b810-28a72c36947d" absoluteBounds="0.765, 10.085, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6220ba0a-c1b9-4e91-8a5b-2b0786c82bb9" absoluteBounds="0.75, 3.75, 2, 1.2605004882812505">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblCountry" />
+      <nestedChildShapes>
+        <elementListCompartment Id="43306efb-614a-4395-bb3b-52f053d163cf" absoluteBounds="0.765, 4.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7ed6d46c-180d-4cc9-a8c9-1d05f8b917b8" absoluteBounds="9.25, 2.25, 2, 4.0544051106770826">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblDriver" />
+      <nestedChildShapes>
+        <elementListCompartment Id="41bf96ed-a673-4244-8fe9-4ff1c4f7877e" absoluteBounds="9.265, 2.71, 1.9700000000000002, 3.494405110677083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b4b9723c-5761-462a-9564-e53a656f65d6" absoluteBounds="17.25, 1, 2, 2.5752791341145826">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblExpense" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dceec120-739e-4eaf-af0a-e8a14197272c" absoluteBounds="17.265, 1.46, 1.9700000000000002, 2.015279134114583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5d4d9b65-dd1e-4f9d-9df7-106192dd90a1" absoluteBounds="6.25, 6.375, 2, 1.0961531575520844">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblGroupCode" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8ea10bc3-0589-4408-a457-b9bb63d9c43d" absoluteBounds="6.265, 6.835, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a66532b6-6482-4aaa-aa53-f685f069e000" absoluteBounds="6.25, 10.375, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7cbca82f-e933-4a0e-ab66-955075f92f13" absoluteBounds="6.265, 10.835, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a3e9da63-c0aa-4465-a700-4ace88be679b" absoluteBounds="3.5, 9.375, 2, 1.7535424804687487">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblUser" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e061416b-d4a5-467d-aa37-bbac527afa79" absoluteBounds="3.515, 9.835, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="990702d7-32b6-49e4-a62f-271fd0ed075c" absoluteBounds="6.25, 20.5, 2, 4.8761417643229166">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblVehicle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9a3fd3fe-b3be-44b5-ba67-b192d0452d56" absoluteBounds="6.265, 20.96, 1.9700000000000002, 4.3161417643229161" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(13.75 : 2.25525024414063); (14.5 : 2.25525024414063)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refEXPType/refEXPType_refEXPDeepType" />
+      <nodes>
+        <classShapeMoniker Id="fe8dbec6-960e-4611-b866-1be215621efc" />
+        <classShapeMoniker Id="66901a1c-4174-45f1-82dd-9c6d8ff1fde2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 28.048076578776); (6.25 : 28.048076578776)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refFunction/refFunction_refFUNCPermission" />
+      <nodes>
+        <classShapeMoniker Id="8581aa83-4fb9-4385-b464-d2ad18feb3ff" />
+        <classShapeMoniker Id="bf28c5a2-908a-4db1-94ee-03cea3a20c7c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 22.9624239095052); (3.5 : 22.9624239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refINSPolicyType/refINSPolicyType_refVHCInsurance" />
+      <nodes>
+        <classShapeMoniker Id="0bcaa741-ac64-4936-b069-f02d02345109" />
+        <classShapeMoniker Id="1f56503d-7931-4255-b44c-18bae14554e0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 14.2141951497396); (8.625 : 14.5891951497396); (8.625 : 13.625); (8.62857443490112 : 13.6285744349011 : JumpStart); (8.74642556509888 : 13.7464255650989 : JumpEnd); (8.78482443490112 : 13.7848244349011 : JumpStart); (8.90267556509888 : 13.9026755650989 : JumpEnd); (9 : 14)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refService/refService_refVHCService" />
+      <nodes>
+        <classShapeMoniker Id="f721b7c6-3e01-48b3-b0c2-eb9435611a09" />
+        <classShapeMoniker Id="09266ac1-b2ff-4535-9a48-946bde25cc49" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 8.96242390950521); (9 : 8.96242390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refViolation/refViolation_refDRVViolation" />
+      <nodes>
+        <classShapeMoniker Id="c02ea8b3-28b5-4a5a-806f-8bfab9aa9b10" />
+        <classShapeMoniker Id="928d1d9a-8875-43f6-acd0-8a632ddc3c8b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 28.0052502441406); (8.75 : 28.0052502441406); (8.75 : 13.1748478190104); (8.76041666666667 : 13.1748478190104 : JumpStart); (8.92708333333333 : 13.1748478190104 : JumpEnd); (10 : 13.1748478190104); (10 : 12.7998478190104)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refFUNCPermission/refFUNCPermission_relMODPermission" />
+      <nodes>
+        <classShapeMoniker Id="bf28c5a2-908a-4db1-94ee-03cea3a20c7c" />
+        <classShapeMoniker Id="1247b252-34a6-4e4a-a3d8-5fbb59b51e86" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 15.6561972052534); (8.62857443490112 : 15.2776227703523 : JumpStart); (8.74642556509888 : 15.1597716401545 : JumpEnd); (8.84375 : 15.0624472052534); (8.84375 : 12.0874239095052); (9 : 12.0874239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refModule/refModule_relMODPermission" />
+      <nodes>
+        <classShapeMoniker Id="e54719f6-6f12-4900-b9a5-c77df0f25790" />
+        <classShapeMoniker Id="1247b252-34a6-4e4a-a3d8-5fbb59b51e86" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.125 : 6.30440511067708); (10.125 : 7.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblDriver/tblDriver_refDRVViolation" />
+      <nodes>
+        <classShapeMoniker Id="7ed6d46c-180d-4cc9-a8c9-1d05f8b917b8" />
+        <classShapeMoniker Id="928d1d9a-8875-43f6-acd0-8a632ddc3c8b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 6.30440511067708); (11.625 : 6.67940511067708); (11.625 : 13.625); (11.375 : 13.625); (11.1839230650989 : 13.8160769349011 : JumpStart); (11.0660719349011 : 13.9339280650989 : JumpEnd); (11 : 14)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblDriver/tblDriver_refVHCService" />
+      <nodes>
+        <classShapeMoniker Id="7ed6d46c-180d-4cc9-a8c9-1d05f8b917b8" />
+        <classShapeMoniker Id="09266ac1-b2ff-4535-9a48-946bde25cc49" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 18.4195975748698); (8.60416666666667 : 18.4195975748698 : JumpStart); (8.77083333333333 : 18.4195975748698 : JumpEnd); (9.91666666666667 : 18.4195975748698 : JumpStart); (10.0833333333333 : 18.4195975748698 : JumpEnd); (11.1249975 : 18.4195975748698); (11.1249975 : 6.30440511067708)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refDRVLicense/refDRVLicense_tblDriver" />
+      <nodes>
+        <classShapeMoniker Id="6884156b-bd50-480b-bda0-b338fa54061a" />
+        <classShapeMoniker Id="7ed6d46c-180d-4cc9-a8c9-1d05f8b917b8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 2.52492390950521); (9.25 : 2.52492390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refEMPStatus/refEMPStatus_tblDriver" />
+      <nodes>
+        <classShapeMoniker Id="4614fcb6-81b1-426d-8448-c93b36eac31e" />
+        <classShapeMoniker Id="7ed6d46c-180d-4cc9-a8c9-1d05f8b917b8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.5 : 4.21242390950521); (9.25 : 4.21242390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refSalary/refSalary_tblDriver" />
+      <nodes>
+        <classShapeMoniker Id="aabe7fa0-00dd-4dad-bde9-9154a7edf77f" />
+        <classShapeMoniker Id="7ed6d46c-180d-4cc9-a8c9-1d05f8b917b8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(16.5 : 2.25525024414063); (16.5729166666667 : 2.25525024414063 : JumpStart); (16.7395833333333 : 2.25525024414063 : JumpEnd); (17.25 : 2.25525024414063)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refEXPDeepType/refEXPDeepType_tblExpense" />
+      <nodes>
+        <classShapeMoniker Id="66901a1c-4174-45f1-82dd-9c6d8ff1fde2" />
+        <classShapeMoniker Id="b4b9723c-5761-462a-9564-e53a656f65d6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(16.5 : 4.40625); (16.5729166666667 : 4.40625 : JumpStart); (16.7395833333333 : 4.40625 : JumpEnd); (17.46875 : 4.40625); (17.46875 : 3.57527913411458)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refPaymentMethod/refPaymentMethod_tblExpense" />
+      <nodes>
+        <classShapeMoniker Id="2ddf740f-c9b5-4c44-8c2d-31a50d5ed313" />
+        <classShapeMoniker Id="b4b9723c-5761-462a-9564-e53a656f65d6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.75 : 2.88550048828125); (12.75 : 3.23039031119792); (16.5729166666667 : 3.23039031119792 : JumpStart); (16.7395833333333 : 3.23039031119792 : JumpEnd); (17.25 : 3.23039031119792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refEXPType/refEXPType_tblExpense" />
+      <nodes>
+        <classShapeMoniker Id="fe8dbec6-960e-4611-b866-1be215621efc" />
+        <classShapeMoniker Id="b4b9723c-5761-462a-9564-e53a656f65d6" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 11.5874239095052); (8.60416666666667 : 11.5874239095052 : JumpStart); (8.77083333333333 : 11.5874239095052 : JumpEnd); (9 : 11.5874239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblRole/tblRole_relMODPermission" />
+      <nodes>
+        <classShapeMoniker Id="a66532b6-6482-4aaa-aa53-f685f069e000" />
+        <classShapeMoniker Id="1247b252-34a6-4e4a-a3d8-5fbb59b51e86" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 10.84375); (8.60416666666667 : 10.84375 : JumpStart); (8.77083333333333 : 10.84375 : JumpEnd); (11.0416641666667 : 10.84375 : JumpStart); (11.2083308333333 : 10.84375 : JumpEnd); (11.5416666666667 : 10.84375 : JumpStart); (11.7083333333333 : 10.84375 : JumpEnd); (12 : 10.84375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblRole/tblRole_tblChildUser" />
+      <nodes>
+        <classShapeMoniker Id="a66532b6-6482-4aaa-aa53-f685f069e000" />
+        <classShapeMoniker Id="f9ef5010-a2b3-4954-a40a-34c9e6124875" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 11.1285424804687); (4.5 : 13.4195975748698); (6.25 : 13.4195975748698)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblUser/tblUser_refService" />
+      <nodes>
+        <classShapeMoniker Id="a3e9da63-c0aa-4465-a700-4ace88be679b" />
+        <classShapeMoniker Id="f721b7c6-3e01-48b3-b0c2-eb9435611a09" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5 : 9.375); (4.5 : 8.8124995); (4.94791916666667 : 8.8124995 : JumpStart); (5.11458583333333 : 8.8124995 : JumpEnd); (6.25 : 8.8124995)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblUser/tblUser_refViolation" />
+      <nodes>
+        <classShapeMoniker Id="a3e9da63-c0aa-4465-a700-4ace88be679b" />
+        <classShapeMoniker Id="c02ea8b3-28b5-4a5a-806f-8bfab9aa9b10" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.875 : 10.2679659016927); (8.60416666666667 : 10.2679659016927 : JumpStart); (8.77083333333333 : 10.2679659016927 : JumpEnd); (11.0416641666667 : 10.2679659016927 : JumpStart); (11.2083308333333 : 10.2679659016927 : JumpEnd); (11.5416666666667 : 10.2679659016927 : JumpStart); (11.7083333333333 : 10.2679659016927 : JumpEnd); (12.375 : 10.2679659016927)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblUser/tblUser_tblChildUser" />
+      <nodes>
+        <classShapeMoniker Id="a3e9da63-c0aa-4465-a700-4ace88be679b" />
+        <classShapeMoniker Id="f9ef5010-a2b3-4954-a40a-34c9e6124875" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.0312525 : 9.375); (5.0312525 : 5.64587646484375); (9.25 : 5.64587646484375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblUser/tblUser_tblDriver" />
+      <nodes>
+        <classShapeMoniker Id="a3e9da63-c0aa-4465-a700-4ace88be679b" />
+        <classShapeMoniker Id="7ed6d46c-180d-4cc9-a8c9-1d05f8b917b8" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.9687475 : 9.375); (3.9687475 : 6.92307657877604); (4.94791916666667 : 6.92307657877604 : JumpStart); (5.11458583333333 : 6.92307657877604 : JumpEnd); (6.25 : 6.92307657877604)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblUser/tblUser_tblGroupCode" />
+      <nodes>
+        <classShapeMoniker Id="a3e9da63-c0aa-4465-a700-4ace88be679b" />
+        <classShapeMoniker Id="5d4d9b65-dd1e-4f9d-9df7-106192dd90a1" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 10.7517712402344); (6.25 : 10.7517712402344)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblUser/tblUser_tblRole" />
+      <nodes>
+        <classShapeMoniker Id="a3e9da63-c0aa-4465-a700-4ace88be679b" />
+        <classShapeMoniker Id="a66532b6-6482-4aaa-aa53-f685f069e000" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 10.3374239095052); (3.5 : 10.3374239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblCompany/tblCompany_tblUser" />
+      <nodes>
+        <classShapeMoniker Id="4829e2f4-c89c-425f-a3a3-6139acb5aef2" />
+        <classShapeMoniker Id="a3e9da63-c0aa-4465-a700-4ace88be679b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 20.5); (7.25 : 19.4641951497396); (8.6875 : 19.4641951497396); (8.6875 : 8.3249599547526); (9 : 8.3249599547526)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblVehicle/tblVehicle_refDRVViolation" />
+      <nodes>
+        <classShapeMoniker Id="990702d7-32b6-49e4-a62f-271fd0ed075c" />
+        <classShapeMoniker Id="928d1d9a-8875-43f6-acd0-8a632ddc3c8b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 20.5); (8.625 : 20.125); (10 : 20.125); (10 : 16.7396264648437)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblVehicle/tblVehicle_refVHCService" />
+      <nodes>
+        <classShapeMoniker Id="990702d7-32b6-49e4-a62f-271fd0ed075c" />
+        <classShapeMoniker Id="09266ac1-b2ff-4535-9a48-946bde25cc49" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 22.9624239095052); (9 : 22.9624239095052)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblVehicle/tblVehicle_relVHCDriver" />
+      <nodes>
+        <classShapeMoniker Id="990702d7-32b6-49e4-a62f-271fd0ed075c" />
+        <classShapeMoniker Id="f6053d19-6e2a-4dd5-8be7-72fa653f9e5c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 22.9913342285156); (6.25 : 22.9913342285156)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/FMS_DBDataContext/refVHCInsurance/refVHCInsurance_tblVehicle" />
+      <nodes>
+        <classShapeMoniker Id="1f56503d-7931-4255-b44c-18bae14554e0" />
+        <classShapeMoniker Id="990702d7-32b6-49e4-a62f-271fd0ed075c" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="be6c92d1-01f1-4de7-bea7-f9fc66f56f8a" absoluteBounds="0.75, 12.75, 2, 3.3970157877604166">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_vehicle_service" />
+      <nestedChildShapes>
+        <elementListCompartment Id="7da57277-e6f0-4eb3-80c5-ff911e1b6391" absoluteBounds="0.765, 13.21, 1.9700000000000002, 2.8370157877604165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4315aa35-a492-4614-b556-e19f0aeab71a" absoluteBounds="0.75, 6.75, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_db_expense" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e445abff-d279-48ed-9264-14006a18dcb9" absoluteBounds="0.765, 7.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="46a385ca-b218-40f8-a4e1-30454145856d" absoluteBounds="12.75, 12.75, 2, 2.0822371419270844">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_db_expiry_flag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3b01e4fc-60a7-40a4-8e60-44c8af80ed51" absoluteBounds="12.765, 13.21, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6c6eb055-b586-406c-a21c-d0d4d80a6df1" absoluteBounds="15.75, 9.75, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_db_service_count" />
+      <nestedChildShapes>
+        <elementListCompartment Id="479fd0f2-fdc4-48cb-bd6e-baf1b6c4b29b" absoluteBounds="15.765, 10.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="45840233-c614-44c8-9075-a01520af96b2" absoluteBounds="15.75, 12.75, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_db_violation_count" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1a0fea58-3101-4188-a225-3affbc8b7211" absoluteBounds="15.765, 13.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="92fb2167-6ec6-4068-b840-1785ef227b76" absoluteBounds="12.75, 15.75, 2, 5.2048364257812505">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_driver_detail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="86302551-614c-40e0-9334-03ed5bcc7101" absoluteBounds="12.765, 16.21, 1.9700000000000002, 4.64483642578125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="582979b6-6dc1-493a-8e1b-dabc9ef34220" absoluteBounds="15.75, 15.75, 2, 1.2605004882812505">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_driver_name" />
+      <nestedChildShapes>
+        <elementListCompartment Id="caf70efe-6270-4f80-ab92-cb8fd7a4788d" absoluteBounds="15.765, 16.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="21c4b3bf-d739-49f9-944e-5317b4c3a418" absoluteBounds="0.75, 17.75, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_driver_preview" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a7a05b17-012f-40de-98e4-85c441324c7b" absoluteBounds="0.765, 18.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="58dbc9ab-fce2-4721-9f33-ac1a7b5231f7" absoluteBounds="17.75, 4.75, 2, 3.0683211263020826">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_driver_violation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2825b45f-fb47-4ce5-bdd8-4409731a066d" absoluteBounds="17.765, 5.21, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="04f37272-51c7-4aa9-9862-f8fc9f7411b3" absoluteBounds="18.75, 8.75, 2, 1.7535424804687487">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_item_flag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd29e176-c762-4638-9e71-f180e55686f8" absoluteBounds="18.765, 9.21, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fb57a1cd-b4a4-4547-9251-c0f67abb5f5f" absoluteBounds="18.75, 11.75, 2, 1.2605004882812487">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_module_role" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2c978e5a-4544-4545-b8e6-96f0846479ee" absoluteBounds="18.765, 12.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="521d99e0-e264-4e76-b45a-47e9f4cac582" absoluteBounds="18.75, 14.75, 2, 2.2465844726562505">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_perm_function" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd33fc6b-3ec1-446c-8c6b-db13267a3c05" absoluteBounds="18.765, 15.21, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1db1ce72-26f4-4ee3-b184-06f9be5fd091" absoluteBounds="15.75, 18.75, 2, 3.3970157877604166">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_user_expense" />
+      <nestedChildShapes>
+        <elementListCompartment Id="77bda018-c8a3-46a3-88e1-13507672bc14" absoluteBounds="15.765, 19.21, 1.9700000000000002, 2.8370157877604165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e064f31e-17b8-4f1d-92c9-493f7d156486" absoluteBounds="18.75, 17.75, 2, 1.5891951497395809">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_user_ref_table" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a162dac0-59ba-45d4-b4ce-84763b46e825" absoluteBounds="18.765, 18.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5baa3533-8fa8-4a1c-88a7-fab3fb8310fd" absoluteBounds="20.75, 0.75, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_user_vehicle" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9100eae5-99d4-4ef2-b805-40a70d7cdf70" absoluteBounds="20.765, 1.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f8aa1774-6b64-4185-b6c6-d9ab53a340f3" absoluteBounds="18.75, 20.75, 2, 5.0404890950520809">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_vehicle_detail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0f76f84e-dc9f-4fe3-8dcb-82468fa5caed" absoluteBounds="18.765, 21.21, 1.9700000000000002, 4.480489095052083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="37abfd66-b1b2-472c-84b9-61da9f560e46" absoluteBounds="20.75, 3.75, 2, 3.0683211263020826">
+      <DataClassMoniker Name="/FMS_DBDataContext/vw_vehicle_insurance" />
+      <nestedChildShapes>
+        <elementListCompartment Id="380e03e9-4309-485c-b334-84f1357afa24" absoluteBounds="20.765, 4.21, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e9265313-5821-4188-9e5b-2b7e93119461" absoluteBounds="14.75, 6, 2, 2.5752791341145831">
+      <DataClassMoniker Name="/FMS_DBDataContext/tblVendor" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5ac12e64-2928-4957-a444-211f13f5ec8e" absoluteBounds="14.765, 6.46, 1.9700000000000002, 2.015279134114583" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(16.65625 : 6); (16.65625 : 1.28125); (17.25 : 1.28125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/FMS_DBDataContext/tblVendor/tblVendor_tblExpense" />
+      <nodes>
+        <classShapeMoniker Id="e9265313-5821-4188-9e5b-2b7e93119461" />
+        <classShapeMoniker Id="b4b9723c-5761-462a-9564-e53a656f65d6" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
